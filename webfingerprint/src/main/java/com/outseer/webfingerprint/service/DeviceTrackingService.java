@@ -1,0 +1,61 @@
+package com.outseer.webfingerprint.service;
+
+
+import com.outseer.webfingerprint.dto.DeviceFingerprintRequest;
+import com.outseer.webfingerprint.dto.DeviceTrackingResponse;
+import com.outseer.webfingerprint.model.Device;
+import com.outseer.webfingerprint.repository.DeviceRepository;
+import org.springframework.stereotype.Service;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+@Service
+public class DeviceTrackingService {
+
+    private final DeviceRepository deviceRepository;
+
+    public DeviceTrackingService(DeviceRepository deviceRepository) {
+        this.deviceRepository = deviceRepository;
+    }
+
+    public DeviceTrackingResponse creteDeviceInfo(DeviceFingerprintRequest request) {
+        Device device = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone()
+                , request.getLanguage(), request.getPlatform());
+        deviceRepository.save(device);
+        DeviceTrackingResponse response = createDeviceTrackingResponse(device, "success");
+        response.setVisitCount(device.getVisitCount());
+        response.setMessage("Welcome back! Visit #" + device.getVisitCount());
+        return response;
+    }
+
+    /**
+     * Get device statistics
+     */
+    public DeviceTrackingResponse getDeviceStats(String id) {
+        Optional<Device> device = deviceRepository.findById(id);
+        if (device.isPresent()) {
+            saveDevice(device.get());
+            return createDeviceTrackingResponse(device.get(), "success");
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    public void saveDevice(Device device) {
+        device.setVisitCount(device.getVisitCount() + 1);
+        deviceRepository.save(device);
+    }
+
+    public DeviceTrackingResponse createDeviceTrackingResponse(Device device, String status) {
+        return new DeviceTrackingResponse(
+                device.getDeviceId(),
+                Duration.between(device.getFirstSeen(), LocalDateTime.now()).toMinutes(),
+                true,
+                "Welcome! This is your" + device.getVisitCount() + "visit.",
+                device.getVisitCount(),
+                status
+        );
+    }
+}
