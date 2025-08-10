@@ -31,36 +31,16 @@ A complete full-stack application that tracks devices using browser fingerprinti
 ✅ **Persistent Tracking**: Survives browser restarts and incognito mode  
 ✅ **Age Calculation**: Accurate device age in minutes since first visit  
 ✅ **Fuzzy Matching**: Handles minor fingerprint changes (browser updates)  
-✅ **Clean Architecture**: Layered design with DTOs, services, repositories  
-✅ **Comprehensive Testing**: Unit and integration tests  
+✅ **Clean Architecture**: Layered design with DTOs, services, repositories
 ✅ **CORS Configuration**: Frontend-backend communication  
 ✅ **Error Handling**: Graceful fallbacks and user feedback  
 
 ## API Endpoints
 
-### POST /api/device/track
+### POST /api/device
 Tracks a device based on fingerprint data
-```json
-Request: {
-  "userAgent": "Mozilla/5.0...",
-  "screen": {"width": 1920, "height": 1080},
-  "timezone": "America/New_York",
-  "hash": "abc123"
-}
 
-Response: {
-  "deviceId": "dev_1234567890_abcd1234",
-  "ageMinutes": 45,
-  "isNewDevice": false,
-  "visitCount": 3,
-  "message": "Welcome back! Visit #3"
-}
-```
-
-### GET /api/device/health
-Health check endpoint
-
-### GET /api/device/stats
+### GET /api/device/{id}
 Device statistics
 
 ## Running the Application
@@ -102,34 +82,6 @@ npm test
 ```
 
 ## Production Considerations
-
-### Security
-- HTTPS recommended for production
-- Consider rate limiting on tracking endpoint
-- Add authentication for admin endpoints
-
-### Database
-- Switch to persistent database (PostgreSQL/MySQL)
-- Add database indexes for performance
-- Consider data retention policies
-
-### Monitoring
-- Add application metrics
-- Implement health checks
-- Log fingerprint mismatches for analysis
-
-### Scalability
-- Consider Redis for session storage
-- Add database connection pooling
-- Implement caching for frequent lookups
-
-## Technical Decisions
-
-1. **H2 Database**: Quick setup for demo, easily replaceable
-2. **Exact + Fuzzy Matching**: Handles browser updates gracefully
-3. **Comprehensive Fingerprinting**: High device uniqueness
-4. **React Frontend**: Modern, responsive UI
-5. **Spring Boot**: Robust backend with excellent testing support
 
 ## Browser Compatibility
 - Modern browsers (Chrome, Firefox, Safari, Edge)
