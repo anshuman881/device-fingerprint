@@ -1,4 +1,4 @@
-# Device Tracker - Full Stack Application
+# Device Fingerprint - Full Stack Application
 
 ## Overview
 A complete full-stack application that tracks devices using browser fingerprinting techniques. Built with React frontend and Spring Boot backend.
