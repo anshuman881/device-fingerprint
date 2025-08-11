@@ -19,6 +19,11 @@ public class DeviceTrackingController {
         this.deviceTrackingService = service;
     }
 
+    /**
+     * Retrieves device statistics by device ID.
+     * @param id Device fingerprint hash
+     * @return ResponseEntity with DeviceTrackingResponse and HTTP status
+     */
     @GetMapping("/{id}")
     public ResponseEntity<DeviceTrackingResponse> getStats(@PathVariable String id) {
         try {
@@ -32,6 +37,11 @@ public class DeviceTrackingController {
         }
     }
 
+    /**
+     * Tracks a device by fingerprint and returns tracking info.
+     * @param fingerprint DeviceFingerprintRequest from client
+     * @return ResponseEntity with DeviceTrackingResponse and HTTP status
+     */
     @PostMapping
     public ResponseEntity<DeviceTrackingResponse> trackDevice(@RequestBody DeviceFingerprintRequest fingerprint) {
         try {

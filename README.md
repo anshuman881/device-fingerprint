@@ -1,90 +1,58 @@
-# Device Fingerprint - Full Stack Application
+# Device Fingerprint Tracking
+
+A full-stack project for device/browser fingerprinting and tracking, consisting of a React frontend and a Spring Boot backend.
+
+---
 
 ## Overview
-A complete full-stack application that tracks devices using browser fingerprinting techniques. Built with React frontend and Spring Boot backend.
 
-## Architecture
+- **Frontend (`device-fingerprint-ui`)**: Collects browser/device properties, generates a fingerprint, and displays visit info.
+- **Backend (`webfingerprint`)**: Stores fingerprints, tracks visits, and exposes REST APIs for device tracking.
 
-### Frontend (React)
-- **DeviceFingerprint.js**: Comprehensive fingerprinting utility collecting:
-  - Browser info (user agent, language, platform, timezone)
-  - Screen properties (resolution, color depth, viewport)
-  - Browser capabilities (local storage, cookies, touch support)
-  - Advanced fingerprinting (canvas, WebGL, fonts, plugins)
-  - Hardware info (memory, CPU cores)
-- **App.js**: Main UI component with device tracking and display
-- **Responsive design** with loading states and error handling
-- **Works in incognito mode** (no cookies required)
+---
 
-### Backend (Spring Boot)
-- **RESTful API** with device tracking endpoints
-- **JPA/Hibernate** with H2 in-memory database
-- **Intelligent fingerprint matching**:
-  - Exact hash matching for returning devices
-  - Fuzzy matching for devices with minor changes
-  - Device age calculation in minutes
-- **Production-ready** with proper error handling and logging
+## Features
 
-## Key Features
+- Collects device/browser info (user agent, platform, screen, timezone, plugins, etc.)
+- Generates a unique fingerprint hash per device
+- Tracks device visits and statistics
+- RESTful API for submitting fingerprints and retrieving stats
+- CORS enabled for local development
 
-✅ **Device Fingerprinting**: 15+ browser/device properties  
-✅ **Persistent Tracking**: Survives browser restarts and incognito mode  
-✅ **Age Calculation**: Accurate device age in minutes since first visit  
-✅ **Fuzzy Matching**: Handles minor fingerprint changes (browser updates)  
-✅ **Clean Architecture**: Layered design with DTOs, services, repositories
-✅ **CORS Configuration**: Frontend-backend communication  
-✅ **Error Handling**: Graceful fallbacks and user feedback  
+---
+
+## Quick Start
+
+### Backend
+
+1. **Requirements:** Java 17+, Maven
+2. **Run:**
+   ```sh
+   cd webfingerprint
+   ./mvnw spring-boot:run
+   ```
+   API available at `http://localhost:8080/api/device`
+
+### Frontend
+
+1. **Requirements:** Node.js, npm
+2. **Run:**
+   ```sh
+   cd device-fingerprint-ui
+   npm install
+   npm start
+   ```
+   App available at `http://localhost:3000`
+
+---
 
 ## API Endpoints
 
-### POST /api/device
-Tracks a device based on fingerprint data
+- `POST /api/device` — Submit fingerprint data
+- `GET /api/device/{id}` — Get device stats by fingerprint hash
 
-### GET /api/device/{id}
-Device statistics
+---
 
-## Running the Application
+## License
 
-### Backend (Spring Boot)
-```bash
-cd backend
-./mvnw spring-boot:run
-```
-Backend runs on http://localhost:8080
-
-### Frontend (React)
-```bash
-cd frontend
-npm install
-npm start
-```
-Frontend runs on http://localhost:3000
-
-## Database
-- **H2 in-memory** database for demo (easily switchable to PostgreSQL/MySQL)
-- **H2 Console**: http://localhost:8080/h2-console
-  - JDBC URL: `jdbc:h2:mem:devicetracker`
-  - Username: `sa`
-  - Password: (empty)
-
-## Testing
-
-### Backend Tests
-```bash
-cd backend
-./mvnw test
-```
-
-### Frontend Tests
-```bash
-cd frontend
-npm test
-```
-
-## Production Considerations
-
-## Browser Compatibility
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-- Works in private/incognito mode
-- Progressive enhancement for older browsers
+For

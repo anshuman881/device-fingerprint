@@ -20,6 +20,11 @@ public class DeviceTrackingService {
         this.deviceRepository = deviceRepository;
     }
 
+    /**
+     * Creates a new device entry from the fingerprint request and returns tracking info.
+     * @param request Device fingerprint data from client
+     * @return DeviceTrackingResponse with visit count and welcome message
+     */
     public DeviceTrackingResponse creteDeviceInfo(DeviceFingerprintRequest request) {
         Device device = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone()
                 , request.getLanguage(), request.getPlatform());
@@ -31,7 +36,9 @@ public class DeviceTrackingService {
     }
 
     /**
-     * Get device statistics
+     * Retrieves device statistics by device ID and updates visit count.
+     * @param id Device fingerprint hash
+     * @return DeviceTrackingResponse with updated stats
      */
     public DeviceTrackingResponse getDeviceStats(String id) {
         Optional<Device> device = deviceRepository.findById(id);
@@ -43,11 +50,21 @@ public class DeviceTrackingService {
         }
     }
 
+    /**
+     * Increments the visit count for a device and saves it.
+     * @param device Device entity to update
+     */
     public void saveDevice(Device device) {
         device.setVisitCount(device.getVisitCount() + 1);
         deviceRepository.save(device);
     }
 
+    /**
+     * Builds a DeviceTrackingResponse from a Device entity.
+     * @param device Device entity
+     * @param status Status string for response
+     * @return DeviceTrackingResponse with device info and stats
+     */
     public DeviceTrackingResponse createDeviceTrackingResponse(Device device, String status) {
         return new DeviceTrackingResponse(
                 device.getDeviceId(),
