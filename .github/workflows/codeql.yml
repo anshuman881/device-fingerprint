@@ -1,0 +1,75 @@
+name: "CodeQL Advanced"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '25 3 * * 6'
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        # UI
+        - language: javascript-typescript
+          build-mode: manual
+        # Backend
+        - language: java-kotlin
+          build-mode: manual
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # UI build for CodeQL
+    - if: matrix.language == 'javascript-typescript'
+      name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: device-fingerprint-ui/package-lock.json
+
+    - if: matrix.language == 'javascript-typescript'
+      name: Install & Build UI
+      run: |
+        npm install
+        npm run build
+      working-directory: device-fingerprint-ui
+
+    # Backend build for CodeQL
+    - if: matrix.language == 'java-kotlin'
+      name: Set up JDK 24
+      uses: actions/setup-java@v4
+      with:
+        java-version: '24'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        build-mode: ${{ matrix.build-mode }}
+
+    - if: matrix.language == 'java-kotlin'
+      name: Build Backend with Maven
+      run: mvn -B package -DskipTests
+      working-directory: webfingerprint
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
