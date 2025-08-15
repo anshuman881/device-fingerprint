@@ -7,6 +7,8 @@ import com.outseer.webfingerprint.exception.DeviceNotFoundException;
 import com.outseer.webfingerprint.model.Device;
 import com.outseer.webfingerprint.repository.DeviceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -22,18 +24,29 @@ public class DeviceTrackingService {
     }
 
     /**
-     * Creates a new device entry from the fingerprint request and returns tracking info.
+     * Creates a new device entry or updates an existing one from the fingerprint request and returns tracking info.
+     * This method will also update the cache after saving the device.
      * @param request Device fingerprint data from client
-     * @return DeviceTrackingResponse with visit count and welcome message
+     * @return DeviceTrackingResponse with visit count and a relevant message
      */
-    public DeviceTrackingResponse createDeviceInfo(DeviceFingerprintRequest request) {
-        Device device = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone()
-                , request.getLanguage(), request.getPlatform());
-        deviceRepository.save(device);
-        DeviceTrackingResponse response = createDeviceTrackingResponse(device, "success");
-        response.setVisitCount(device.getVisitCount());
-        response.setMessage("Welcome back! Visit #" + device.getVisitCount());
-        return response;
+    @CachePut(value = "devices", key = "#request.hash")
+    public DeviceTrackingResponse createOrUpdateDeviceInfo(DeviceFingerprintRequest request) {
+        Optional<Device> existingDevice = deviceRepository.findById(request.getHash());
+
+        Device deviceToSave;
+        if (existingDevice.isPresent()) {
+            deviceToSave = existingDevice.get();
+            deviceToSave.setVisitCount(deviceToSave.getVisitCount() + 1);
+            deviceToSave.setLastSeen(LocalDateTime.now());
+        } else {
+            deviceToSave = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone()
+                    , request.getLanguage(), request.getPlatform());
+            deviceToSave.setVisitCount(1);
+            deviceToSave.setFirstSeen(LocalDateTime.now());
+            deviceToSave.setLastSeen(LocalDateTime.now());
+        }
+        deviceRepository.save(deviceToSave);
+        return createDeviceTrackingResponse(deviceToSave, "success");
     }
 
     /**
@@ -42,23 +55,26 @@ public class DeviceTrackingService {
      * @return DeviceTrackingResponse with updated stats
      */
     public DeviceTrackingResponse getDeviceStats(String id) {
-        Optional<Device> device = deviceRepository.findById(id);
-        if (device.isPresent()) {
-            saveDevice(device.get());
-            return createDeviceTrackingResponse(device.get(), "success");
+        Optional<Device> deviceOptional = findDeviceById(id);
+        if (deviceOptional.isPresent()) {
+            Device existingDevice = deviceOptional.get();
+            existingDevice.setVisitCount(existingDevice.getVisitCount() + 1);
+            existingDevice.setLastSeen(LocalDateTime.now());
+            deviceRepository.save(existingDevice);
+            return createDeviceTrackingResponse(existingDevice, "success");
         } else {
             throw new DeviceNotFoundException("Device Not Found");
         }
     }
 
     /**
-     * Increments the visit count for a device and saves it.
-     * @param device Device entity to update
+     * Fetches a device by its ID from the repository, with caching.
+     * @param id Device fingerprint hash
+     * @return Optional containing the Device if found, otherwise empty.
      */
-    public void saveDevice(Device device) {
-        device.setVisitCount(device.getVisitCount() + 1);
-        device.setLastSeen(LocalDateTime.now());
-        deviceRepository.save(device);
+    @Cacheable(value = "devices", key = "#id")
+    protected Optional<Device> findDeviceById(String id) {
+        return deviceRepository.findById(id);
     }
 
     /**
@@ -68,10 +84,16 @@ public class DeviceTrackingService {
      * @return DeviceTrackingResponse with device info and stats
      */
     public DeviceTrackingResponse createDeviceTrackingResponse(Device device, String status) {
+        String message;
+        if (device.getVisitCount() == 1) {
+            message = "Welcome! This is your first visit.";
+        } else {
+            message = "Welcome back! This is your " + device.getVisitCount() + " visit.";
+        }
         return new DeviceTrackingResponse(
                 device.getDeviceId(),
                 Duration.between(device.getFirstSeen(), LocalDateTime.now()).toMinutes(),
-                "Welcome! This is your " + device.getVisitCount() + " visit.",
+                message,
                 device.getVisitCount(),
                 status,
                 device.getFirstSeen(),

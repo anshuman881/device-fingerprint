@@ -14,13 +14,17 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import com.outseer.webfingerprint.exception.DeviceNotFoundException;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -47,13 +51,20 @@ class DeviceTrackingControllerTest {
         request.setScreenResolution("1920x1080");
         request.setTimezone("UTC");
         request.setLanguage("en");
+        request.setCookiesEnabled(true);
+        request.setPlugins(List.of(Map.of("name", "testPlugin")));
+        request.setCanvas("testCanvas");
+        request.setWebGLFingerprint("testWebGL");
+        request.setTouchSupport(false);
+        request.setDeviceMemory(8);
+        request.setHardwareConcurrency(4);
 
-        response = new DeviceTrackingResponse("NA",0L,"NA",0,"NA", LocalDateTime.now(),LocalDateTime.now());
+        response = new DeviceTrackingResponse("testHash", 10L, "Welcome back! This is your 10 visit.", 10, "success", LocalDateTime.now().minusDays(1), LocalDateTime.now());
     }
 
     @Test
     void trackDevice_ShouldReturnSuccess() throws Exception {
-        when(deviceTrackingService.createDeviceInfo(any(DeviceFingerprintRequest.class)))
+        when(deviceTrackingService.createOrUpdateDeviceInfo(any(DeviceFingerprintRequest.class)))
             .thenReturn(response);
 
         mockMvc.perform(post("/api/device")
@@ -65,6 +76,16 @@ class DeviceTrackingControllerTest {
     }
 
     @Test
+    void trackDevice_ShouldReturnBadRequest_WhenValidationFails() throws Exception {
+        request.setHash(null); // Make the request invalid
+
+        mockMvc.perform(post("/api/device")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().is5xxServerError());
+    }
+
+    @Test
     void getStats_ShouldReturnStats_WhenDeviceExists() throws Exception {
         when(deviceTrackingService.getDeviceStats("testHash"))
             .thenReturn(response);
@@ -73,5 +94,15 @@ class DeviceTrackingControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.deviceId").value("testHash"))
                 .andExpect(jsonPath("$.status").value("success"));
+    }
+
+    @Test
+    void getStats_ShouldReturnNotFound_WhenDeviceDoesNotExist() throws Exception {
+        when(deviceTrackingService.getDeviceStats(anyString()))
+            .thenThrow(new DeviceNotFoundException("Device Not Found"));
+
+        mockMvc.perform(get("/api/device/{id}", "nonExistentHash"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value("not_found"));
     }
 }

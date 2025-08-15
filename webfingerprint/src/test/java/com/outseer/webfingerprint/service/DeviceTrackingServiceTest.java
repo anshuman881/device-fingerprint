@@ -54,14 +54,38 @@ class DeviceTrackingServiceTest {
     }
 
     @Test
-    void createDeviceInfo_ShouldCreateNewDevice() {
+    void createOrUpdateDeviceInfo_ShouldCreateNewDevice() {
+        when(deviceRepository.findById(anyString())).thenReturn(Optional.empty());
         when(deviceRepository.save(any(Device.class))).thenReturn(device);
 
-        DeviceTrackingResponse response = deviceTrackingService.createDeviceInfo(request);
+        DeviceTrackingResponse response = deviceTrackingService.createOrUpdateDeviceInfo(request);
 
         assertNotNull(response);
         assertEquals(device.getDeviceId(), response.getDeviceId());
         assertEquals("success", response.getStatus());
+        assertEquals("Welcome! This is your first visit.", response.getMessage());
+        assertEquals(1L, response.getVisitCount());
+        verify(deviceRepository).findById(request.getHash());
+        verify(deviceRepository).save(any(Device.class));
+    }
+
+    @Test
+    void createOrUpdateDeviceInfo_ShouldUpdateExistingDevice() {
+        Device existingDevice = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone(), request.getLanguage(), request.getPlatform());
+        existingDevice.setFirstSeen(LocalDateTime.now().minusDays(1));
+        existingDevice.setVisitCount(5);
+
+        when(deviceRepository.findById(anyString())).thenReturn(Optional.of(existingDevice));
+        when(deviceRepository.save(any(Device.class))).thenReturn(existingDevice);
+
+        DeviceTrackingResponse response = deviceTrackingService.createOrUpdateDeviceInfo(request);
+
+        assertNotNull(response);
+        assertEquals(existingDevice.getDeviceId(), response.getDeviceId());
+        assertEquals("success", response.getStatus());
+        assertEquals("Welcome back! This is your 6 visit.", response.getMessage());
+        assertEquals(6L, response.getVisitCount());
+        verify(deviceRepository).findById(request.getHash());
         verify(deviceRepository).save(any(Device.class));
     }
 
@@ -75,6 +99,7 @@ class DeviceTrackingServiceTest {
         assertNotNull(response);
         assertEquals(device.getDeviceId(), response.getDeviceId());
         assertEquals("success", response.getStatus());
+        assertEquals(2, device.getVisitCount()); // Verify visit count incremented
         verify(deviceRepository).findById("testHash");
         verify(deviceRepository).save(any(Device.class));
     }
@@ -83,21 +108,11 @@ class DeviceTrackingServiceTest {
     void getDeviceStats_ShouldThrowException_WhenDeviceNotFound() {
         when(deviceRepository.findById(anyString())).thenReturn(Optional.empty());
 
-        assertThrows(DeviceNotFoundException.class, () -> 
+        assertThrows(DeviceNotFoundException.class, () ->
             deviceTrackingService.getDeviceStats("nonexistentHash")
         );
 
         verify(deviceRepository).findById("nonexistentHash");
         verify(deviceRepository, never()).save(any(Device.class));
-    }
-
-    @Test
-    void saveDevice_ShouldIncrementVisitCount() {
-        when(deviceRepository.save(any(Device.class))).thenReturn(device);
-
-        deviceTrackingService.saveDevice(device);
-
-        assertEquals(2, device.getVisitCount());
-        verify(deviceRepository).save(device);
     }
 }

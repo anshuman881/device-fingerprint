@@ -22,10 +22,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        # UI
+        # UI - JS/TS scanning
         - language: javascript-typescript
-          build-mode: manual
-        # Backend
+          build-mode: none
+        # Backend - Java scanning
         - language: java-kotlin
           build-mode: manual
 
@@ -33,7 +33,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # UI build for CodeQL
+    # UI build step (independent from CodeQL build mode)
     - if: matrix.language == 'javascript-typescript'
       name: Set up Node.js
       uses: actions/setup-node@v4
@@ -43,13 +43,13 @@ jobs:
         cache-dependency-path: device-fingerprint-ui/package-lock.json
 
     - if: matrix.language == 'javascript-typescript'
-      name: Install & Build UI
+      name: Install & Build UI (Ignore warnings)
       run: |
         npm install
         CI=false npm run build
       working-directory: device-fingerprint-ui
 
-    # Backend build for CodeQL
+    # Backend build setup
     - if: matrix.language == 'java-kotlin'
       name: Set up JDK 24
       uses: actions/setup-java@v4
@@ -58,17 +58,20 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    # CodeQL initialization
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
 
+    # Backend build before scanning
     - if: matrix.language == 'java-kotlin'
       name: Build Backend with Maven
       run: mvn -B package -DskipTests
       working-directory: webfingerprint
 
+    # Run CodeQL analysis
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:

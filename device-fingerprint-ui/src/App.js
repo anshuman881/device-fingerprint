@@ -16,133 +16,11 @@ import WifiOffIcon from '@mui/icons-material/WifiOff';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { createTheme, ThemeProvider } from '@mui/material';
-import { keyframes } from '@mui/system';
+import { ThemeProvider } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import './App.css';
-
-const theme = createTheme({
-  palette: {
-    primary: { main: '#1565C0' }, // A slightly lighter, yet dark blue
-    secondary: { main: '#42A5F5' }, // Keep lighter blue for secondary
-    error: { main: '#D32F2F' }, // Standard error red
-    warning: { main: '#FFB300' }, // Adjusted warning yellow
-    background: {
-      default: '#1A202C', // Lighter dark background
-      paper: 'rgba(30, 40, 50, 0.8)' // Lighter semi-transparent blue for cards/paper
-    },
-    text: {
-      primary: '#FFFFFF', // Keep primary text white for contrast
-      secondary: '#90CAF9' // Brighter light blue for secondary text
-    }
-  },
-  shape: { borderRadius: 12 }, // Slightly rounded corners, typical Apple
-  typography: {
-    fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    h2: { fontWeight: 600, letterSpacing: 0.8 },
-    h3: { fontWeight: 600, letterSpacing: 0.4 },
-    subtitle2: { color: '#E0E0E0' }, // Directly set the color to a static value
-  },
-  components: {
-    MuiPaper: {
-      defaultProps: {
-        elevation: 0, // Remove default elevation to control via boxShadow
-      },
-      styleOverrides: {
-        root: {
-          background: 'rgba(30, 40, 50, 0.8)',
-          backdropFilter: 'blur(20px) saturate(150%)',
-          border: '1px solid rgba(144, 202, 249, 0.3)', // Lighter blue border
-          boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.06)',
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 15px 45px rgba(0,0,0,0.6), inset 0 1px rgba(255,255,255,0.1)',
-          },
-        }
-      }
-    },
-    MuiCard: {
-      defaultProps: {
-        elevation: 0,
-      },
-      styleOverrides: {
-        root: {
-          background: 'rgba(30, 40, 50, 0.8)',
-          backdropFilter: 'blur(20px) saturate(150%)',
-          border: '1px solid rgba(144, 202, 249, 0.3)',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.06)',
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: '0 15px 45px rgba(0,0,0,0.6), inset 0 1px rgba(255,255,255,0.1)',
-          },
-        }
-      }
-    },
-    MuiTypography: {
-      styleOverrides: {
-        root: { color: '#FFFFFF' },
-        subtitle2: ({ theme }) => ({ color: theme.palette.text.primary })
-      }
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          borderRadius: 999,
-          backdropFilter: 'blur(12px)',
-          color: theme.palette.text.primary,
-          borderColor: 'rgba(144, 202, 249, 0.4)',
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            borderColor: theme.palette.primary.light,
-            boxShadow: '0 0 10px rgba(21, 101, 192, 0.6)',
-          },
-        })
-      }
-    },
-    MuiAccordion: {
-      defaultProps: {
-        elevation: 0,
-      },
-      styleOverrides: {
-        root: {
-          background: 'rgba(30, 40, 50, 0.8)',
-          border: '1px solid rgba(144, 202, 249, 0.3)',
-          borderRadius: 12,
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-3px)',
-            boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
-          },
-          '&:before': { // Remove the default Material-UI border before
-            display: 'none',
-          },
-        },
-        expanded: {
-          margin: 'auto !important', // Fixes margin issue when expanded
-          marginTop: '16px !important', // Add some top margin for spacing
-          marginBottom: '16px !important', // Add some bottom margin
-        },
-      }
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 999, // Pill shape
-          textTransform: 'none', // No uppercase
-          fontWeight: 600,
-          padding: '10px 20px',
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-1px)',
-            boxShadow: '0 4px 12px rgba(21, 101, 192, 0.3)',
-          },
-        },
-      },
-    }
-  }
-});
+import { formatDeviceAge, parseToDate, formatDateTime } from './utils/formatters';
+import theme, { auroraShift } from './theme';
 
 function App() {
   const [deviceData, setDeviceData] = useState(null);
@@ -221,40 +99,6 @@ function App() {
     }
   };
 
-  const formatDeviceAge = (minutes) => {
-    if (minutes === 0) return '0 minutes (new device)';
-    if (minutes < 60) return `${minutes} minutes`;
-    if (minutes < 1440) return `${Math.floor(minutes / 60)} hours ${minutes % 60} minutes`;
-    return `${Math.floor(minutes / 1440)} days ${Math.floor((minutes % 1440) / 60)} hours`;
-  };
-
-  // Helpers to format LocalDateTime (array or ISO string) to a readable date/time
-  const parseToDate = (value) => {
-    if (!value) return null;
-    try {
-      if (Array.isArray(value)) {
-        const [year, month, day, hour = 0, minute = 0, second = 0, nano = 0] = value;
-        return new Date(year, month - 1, day, hour, minute, second, Math.floor(nano / 1e6));
-      }
-      return new Date(value);
-    } catch (_) {
-      return null;
-    }
-  };
-
-  const formatDateTime = (value) => {
-    const date = parseToDate(value);
-    if (!date || isNaN(date.getTime())) return 'Unknown';
-    return date.toLocaleString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    });
-  };
-
   const particlesInit = async (engine) => {
     await loadFull(engine);
   };
@@ -294,13 +138,6 @@ function App() {
     },
     retina_detect: true
   };
-
-  // Subtle aurora background animation (eye-relaxing)
-  const auroraShift = keyframes`
-    0% { background-position: 0% 0%, 100% 0%, 0% 100%; }
-    50% { background-position: 100% 0%, 0% 100%, 100% 100%; }
-    100% { background-position: 0% 100%, 100% 100%, 0% 0%; }
-  `;
 
   if (loading) {
     return (
@@ -548,37 +385,36 @@ function App() {
                   </Box>
                 </Paper>
               </Grid>
-
-              {deviceData?.message && (
-                <Grid item xs={4} sm={4} md={4} lg={1}>
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      p: 3,
-                      height: '100%',
-                      background: theme.palette.background.paper,
-                      '& .MuiTypography-root': {
-                        color: theme.palette.text.primary,
-                      },
-                      '& .MuiSvgIcon-root': {
-                        color: theme.palette.text.primary,
-                      }
-                    }}
+              <Grid item xs={4} sm={4} md={4} lg={1} 
+                    mt={5}>
+                <Paper
+                  elevation={3}
+                    mt={4}
+                  sx={{
+                    p: 3,
+                    height: '100%',
+                    background: theme.palette.background.paper,
+                    '& .MuiTypography-root': {
+                      color: theme.palette.text.primary,
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: theme.palette.text.primary,
+                    }
+                  }}
+                >
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    mb={2}
                   >
-                    <Box
-                      display="flex"
-                      alignItems="center"
-                      mb={2}
-                    >
-                      <VisibilityIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography variant="h6">Visit Count</Typography>
-                    </Box>
-                    <Typography variant="h5">
-                      {deviceData?.visitCount || 'Unknown'}
-                    </Typography>
-                  </Paper>
-                </Grid>
-              )}
+                    <VisibilityIcon color="primary" sx={{ mr: 1 }} />
+                    <Typography variant="h6">Visit Count</Typography>
+                  </Box>
+                  <Typography variant="h5">
+                    {deviceData?.visitCount || 'Unknown'}
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
 
             {/* Backend Status now shown in the Status card above */}
@@ -591,7 +427,7 @@ function App() {
                 }
               }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography variant="h6" sx={{color: theme.palette.text.primary}}>Fingerprint Details</Typography>
+                  <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>Fingerprint Details</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container spacing={3}>
@@ -602,7 +438,7 @@ function App() {
                         boxShadow: 'none' // Remove card shadow
                       }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Browser Info</Typography>
+                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Browser Info</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'User Agent': fingerprint.userAgent,
@@ -622,7 +458,7 @@ function App() {
                                 >
                                   {key}
                                 </Typography>
-                                <Typography sx={{color: theme.palette.text.primary}}>
+                                <Typography sx={{ color: theme.palette.text.primary }}>
                                   {value}
                                 </Typography>
                               </Paper>
@@ -640,7 +476,7 @@ function App() {
                         boxShadow: 'none'
                       }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>WebGL</Typography>
+                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>WebGL</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Supported': fingerprint.webGLSupported,
@@ -659,7 +495,7 @@ function App() {
                                 >
                                   {key}
                                 </Typography>
-                                <Typography sx={{color: theme.palette.text.primary}}>
+                                <Typography sx={{ color: theme.palette.text.primary }}>
                                   {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
                                 </Typography>
                               </Paper>
@@ -676,7 +512,7 @@ function App() {
                         boxShadow: 'none'
                       }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Capabilities</Typography>
+                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Capabilities</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Cookies': fingerprint.cookiesEnabled,
@@ -696,7 +532,7 @@ function App() {
                                 >
                                   {key}
                                 </Typography>
-                                <Typography sx={{color: theme.palette.text.primary}}>
+                                <Typography sx={{ color: theme.palette.text.primary }}>
                                   {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
                                 </Typography>
                               </Paper>
@@ -714,7 +550,7 @@ function App() {
                         boxShadow: 'none'
                       }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Screen & Hardware</Typography>
+                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Screen & Hardware</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Screen Resolution': fingerprint.screenResolution,
@@ -734,7 +570,7 @@ function App() {
                                 >
                                   {key}
                                 </Typography>
-                                <Typography sx={{color: theme.palette.text.primary}}>
+                                <Typography sx={{ color: theme.palette.text.primary }}>
                                   {value}
                                 </Typography>
                               </Paper>
@@ -752,7 +588,7 @@ function App() {
                         boxShadow: 'none'
                       }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Plugins ({Array.isArray(fingerprint.plugins) ? fingerprint.plugins.length : 0})</Typography>
+                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Plugins ({Array.isArray(fingerprint.plugins) ? fingerprint.plugins.length : 0})</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {(fingerprint.plugins || []).slice(0, 20).map((p, idx) => (
                               <Paper elevation={0} key={idx} sx={{

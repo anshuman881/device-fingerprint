@@ -6,47 +6,37 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(DeviceNotFoundException.class)
-    public ResponseEntity<DeviceTrackingResponse> handleDeviceNotFoundException(
-            DeviceNotFoundException ex,
-            WebRequest request) {
-
-        DeviceTrackingResponse errorResponse = new DeviceTrackingResponse(
-                "unknown",0L,"Device not found",0,"Fail", LocalDateTime.now(),LocalDateTime.now()
-        );
-
-        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    public ResponseEntity<DeviceTrackingResponse> handleDeviceNotFoundException(DeviceNotFoundException ex) {
+        logger.warn("Device not found: {}", ex.getMessage());
+        DeviceTrackingResponse response = new DeviceTrackingResponse();
+        response.setStatus("not_found");
+        response.setMessage(ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<DeviceTrackingResponse> handleGlobalException(
-            Exception ex,
-            WebRequest request) {
-
+    public ResponseEntity<DeviceTrackingResponse> handleGeneralException(Exception ex) {
+        logger.error("An unexpected error occurred: {}", ex.getMessage(), ex);
         DeviceTrackingResponse errorResponse = new DeviceTrackingResponse(
-                "error",0L,"An unexpected error occurred",0,"Error", LocalDateTime.now(),LocalDateTime.now()
+                "error_" + System.currentTimeMillis(),
+                0L,
+                "An unexpected error occurred: " + ex.getMessage(),
+                0,
+                "Fail",
+                LocalDateTime.now(),
+                LocalDateTime.now()
         );
-
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<DeviceTrackingResponse> handleIllegalArgumentException(
-            IllegalArgumentException ex,
-            WebRequest request) {
-
-        DeviceTrackingResponse errorResponse = new DeviceTrackingResponse(
-                "invalid",0L,ex.getMessage(),0,"Error", LocalDateTime.now(),LocalDateTime.now()
-        );
-
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
