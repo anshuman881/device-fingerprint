@@ -107,7 +107,6 @@ function App() {
   const initializeDevice = async () => {
     try {
       if (!mounted) return;
-      setLoading(true);
       setError(null);
 
       // Collect device fingerprint
