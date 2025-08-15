@@ -18,65 +18,128 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { keyframes } from '@mui/system';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import './App.css';
 
-// Apple-inspired glassy theme
 const theme = createTheme({
   palette: {
-    primary: { main: '#0A84FF' }, // Apple blue
-    secondary: { main: '#30D158' }, // Apple green
-    error: { main: '#FF453A' },
-    warning: { main: '#FFD60A' },
+    primary: { main: '#1565C0' }, // A slightly lighter, yet dark blue
+    secondary: { main: '#42A5F5' }, // Keep lighter blue for secondary
+    error: { main: '#D32F2F' }, // Standard error red
+    warning: { main: '#FFB300' }, // Adjusted warning yellow
     background: {
-      default: '#0b0b0f',
-      paper: 'rgba(26, 26, 30, 0.6)'
+      default: '#1A202C', // Lighter dark background
+      paper: 'rgba(30, 40, 50, 0.8)' // Lighter semi-transparent blue for cards/paper
     },
     text: {
-      primary: '#EDEDED',
-      secondary: '#A1A1AA'
+      primary: '#FFFFFF', // Keep primary text white for contrast
+      secondary: '#90CAF9' // Brighter light blue for secondary text
     }
   },
-  shape: { borderRadius: 16 },
+  shape: { borderRadius: 12 }, // Slightly rounded corners, typical Apple
   typography: {
-    fontFamily: 'SF Pro Text, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    h2: { fontWeight: 700, letterSpacing: 1 },
-    h3: { fontWeight: 700, letterSpacing: 0.5 },
-    subtitle2: { color: '#64ffda' }
+    fontFamily: 'SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    h2: { fontWeight: 600, letterSpacing: 0.8 },
+    h3: { fontWeight: 600, letterSpacing: 0.4 },
+    subtitle2: { color: '#E0E0E0' }, // Directly set the color to a static value
   },
   components: {
     MuiPaper: {
+      defaultProps: {
+        elevation: 0, // Remove default elevation to control via boxShadow
+      },
       styleOverrides: {
         root: {
-          background: 'rgba(26, 26, 30, 0.6)',
-          backdropFilter: 'blur(16px) saturate(120%)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.40), inset 0 1px rgba(255,255,255,0.06)'
+          background: 'rgba(30, 40, 50, 0.8)',
+          backdropFilter: 'blur(20px) saturate(150%)',
+          border: '1px solid rgba(144, 202, 249, 0.3)', // Lighter blue border
+          boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.06)',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: '0 15px 45px rgba(0,0,0,0.6), inset 0 1px rgba(255,255,255,0.1)',
+          },
+        }
+      }
+    },
+    MuiCard: {
+      defaultProps: {
+        elevation: 0,
+      },
+      styleOverrides: {
+        root: {
+          background: 'rgba(30, 40, 50, 0.8)',
+          backdropFilter: 'blur(20px) saturate(150%)',
+          border: '1px solid rgba(144, 202, 249, 0.3)',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.06)',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-4px)',
+            boxShadow: '0 15px 45px rgba(0,0,0,0.6), inset 0 1px rgba(255,255,255,0.1)',
+          },
         }
       }
     },
     MuiTypography: {
       styleOverrides: {
-        root: { color: '#EDEDED' },
-        subtitle2: { color: '#64ffda' }
+        root: { color: '#FFFFFF' },
+        subtitle2: ({ theme }) => ({ color: theme.palette.text.primary })
       }
     },
     MuiChip: {
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           borderRadius: 999,
-          backdropFilter: 'blur(10px)',
-          color: '#EDEDED',
-          borderColor: 'rgba(255, 255, 255, 0.12)'
-        }
+          backdropFilter: 'blur(12px)',
+          color: theme.palette.text.primary,
+          borderColor: 'rgba(144, 202, 249, 0.4)',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            borderColor: theme.palette.primary.light,
+            boxShadow: '0 0 10px rgba(21, 101, 192, 0.6)',
+          },
+        })
       }
     },
     MuiAccordion: {
+      defaultProps: {
+        elevation: 0,
+      },
       styleOverrides: {
         root: {
-          background: 'rgba(26, 26, 30, 0.6)',
-          border: '1px solid rgba(255,255,255,0.08)'
-        }
+          background: 'rgba(30, 40, 50, 0.8)',
+          border: '1px solid rgba(144, 202, 249, 0.3)',
+          borderRadius: 12,
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-3px)',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+          },
+          '&:before': { // Remove the default Material-UI border before
+            display: 'none',
+          },
+        },
+        expanded: {
+          margin: 'auto !important', // Fixes margin issue when expanded
+          marginTop: '16px !important', // Add some top margin for spacing
+          marginBottom: '16px !important', // Add some bottom margin
+        },
       }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 999, // Pill shape
+          textTransform: 'none', // No uppercase
+          fontWeight: 600,
+          padding: '10px 20px',
+          transition: 'all 0.3s ease-in-out',
+          '&:hover': {
+            transform: 'translateY(-1px)',
+            boxShadow: '0 4px 12px rgba(21, 101, 192, 0.3)',
+          },
+        },
+      },
     }
   }
 });
@@ -107,6 +170,7 @@ function App() {
   const initializeDevice = async () => {
     try {
       if (!mounted) return;
+      setLoading(true);
 
       // Collect device fingerprint
       const fp = DeviceFingerprint.collect();
@@ -137,7 +201,7 @@ function App() {
           setDeviceData(data);
           setLoading(false);
         },
-        error: () => {
+        error: (error) => {
           // If device not found, create new device
           subscription = createDevice(payload).subscribe({
             next: (data) => {
@@ -146,6 +210,7 @@ function App() {
             },
             error: (error) => {
               console.error('Error:', error);
+              setBackendStatusError(error.message); // Using backendStatusError for general errors
               setLoading(false);
             }
           });
@@ -196,20 +261,20 @@ function App() {
 
   const particlesConfig = {
     particles: {
-      number: { value: 80, density: { enable: true, value_area: 800 } },
-      color: { value: "#ffffff" },
-      opacity: { value: 0.2 },
-      size: { value: 3 },
+      number: { value: 70, density: { enable: true, value_area: 800 } }, // Slightly fewer particles
+      color: { value: "#BBDEFB" }, // Light blue for particles
+      opacity: { value: 0.5 }, // Slightly more opaque
+      size: { value: 2.5 }, // Smaller particles
       line_linked: {
         enable: true,
         distance: 150,
-        color: "#0A84FF",
-        opacity: 0.2,
+        color: "#90CAF9", // Slightly darker blue for lines
+        opacity: 0.4,
         width: 1
       },
       move: {
         enable: true,
-        speed: 2,
+        speed: 1.5,
         direction: "none",
         random: true,
         straight: false,
@@ -220,8 +285,11 @@ function App() {
     interactivity: {
       detect_on: "canvas",
       events: {
-        onhover: { enable: true, mode: "repulse" },
+        onhover: { enable: true, mode: "bubble" }, // Changed to bubble for a more subtle effect
         resize: true
+      },
+      modes: {
+        bubble: { distance: 200, size: 6, duration: 2, opacity: 0.5 } // Defined bubble mode
       }
     },
     retina_detect: true
@@ -269,11 +337,12 @@ function App() {
               <Typography
                 variant="h2"
                 gutterBottom
+                textAlign="center"
                 sx={{
-                  color: 'text.primary',
-                  textShadow: '0 0 10px rgba(33, 150, 243, 0.5)',
-                  fontWeight: 'bold',
-                  letterSpacing: 2
+                  color: theme.palette.text.primary,
+                  textShadow: '0 0 15px rgba(21, 101, 192, 0.5)', // Adjusted blue glow for title
+                  fontWeight: theme.typography.h2.fontWeight,
+                  letterSpacing: theme.typography.h2.letterSpacing
                 }}
               >
                 Device Tracker
@@ -293,8 +362,8 @@ function App() {
                     size={80}
                     thickness={4}
                     sx={{
-                      color: 'primary.main',
-                      filter: 'drop-shadow(0 0 10px rgba(33, 150, 243, 0.5))'
+                      color: theme.palette.primary.main,
+                      filter: 'drop-shadow(0 0 15px rgba(21, 101, 192, 0.6))', // Adjusted blue drop shadow
                     }}
                   />
                 </motion.div>
@@ -302,8 +371,8 @@ function App() {
                   variant="h6"
                   mt={3}
                   sx={{
-                    color: 'text.secondary',
-                    textShadow: '0 0 5px rgba(33, 150, 243, 0.3)'
+                    color: theme.palette.text.primary,
+                    textShadow: '0 0 8px rgba(21, 101, 192, 0.3)', // Adjusted subtle blue text shadow
                   }}
                 >
                   Analyzing device fingerprint...
@@ -325,10 +394,10 @@ function App() {
           <Box sx={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <Box textAlign="center">
-                <WifiOffIcon sx={{ fontSize: 80, color: '#ff1744' }} />
-                <Typography variant="h3" sx={{ mt: 2, color: '#ff8a80', fontWeight: 700 }}>Uh‑oh, backend took a coffee break!</Typography>
-                <Typography variant="h6" sx={{ mt: 1, color: '#a8b2d1' }}>We can't reach the server right now. It might be stretching its legs.</Typography>
-                <SentimentVeryDissatisfiedIcon sx={{ mt: 2, fontSize: 40, color: '#a8b2d1' }} />
+                <WifiOffIcon sx={{ fontSize: 80, color: theme.palette.error.main }} />
+                <Typography variant="h3" sx={{ mt: 2, color: theme.palette.text.primary, fontWeight: 700 }}>Uh‑oh, backend took a coffee break!</Typography>
+                <Typography variant="h6" sx={{ mt: 1, color: theme.palette.text.primary }}>We can't reach the server right now. It might be stretching its legs.</Typography>
+                <SentimentVeryDissatisfiedIcon sx={{ mt: 2, fontSize: 40, color: theme.palette.text.primary }} />
                 <Box sx={{ mt: 4 }}>
                   <Button
                     variant="contained"
@@ -361,19 +430,6 @@ function App() {
         overflow: 'hidden',
         py: 4,
         bgcolor: 'background.default',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          inset: 0,
-          background: `radial-gradient(60% 50% at 10% 10%, rgba(10,132,255,0.15), transparent 60%),
-                       radial-gradient(50% 60% at 90% 20%, rgba(48,209,88,0.12), transparent 60%),
-                       radial-gradient(70% 60% at 30% 90%, rgba(255,214,10,0.08), transparent 60%)`,
-          filter: 'blur(40px) saturate(120%)',
-          animation: `${auroraShift} 40s ease-in-out infinite`,
-          backgroundSize: '200% 200%',
-          opacity: 0.9,
-          pointerEvents: 'none'
-        }
       }}>
         <Particles id="tsparticles" init={particlesInit} options={particlesConfig} />
         <Container maxWidth="lg">
@@ -387,26 +443,26 @@ function App() {
               gutterBottom
               textAlign="center"
               sx={{
-                background: 'linear-gradient(180deg, #ffffff, #b3b3b3)',
+                background: 'linear-gradient(180deg, #FFFFFF, #B3B3B3)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                textShadow: '0 10px 30px rgba(0,0,0,0.45)'
+                textShadow: '0 6px 25px rgba(0,0,0,0.4)'
               }}
             >
               Device Tracker
             </Typography>
 
-            <Grid container spacing={3} sx={{ mb: 8 }} columns={{ xs: 4, sm: 8, md: 20 }}>
-              <Grid item xs={4} sm={4} md={4}>
+            <Grid container spacing={3} sx={{ mb: 8 }}>
+              <Grid item>
                 <Paper elevation={3} sx={{
                   p: 3,
                   height: '100%',
-                  background: 'rgba(23, 42, 69, 0.95)',
+                  background: theme.palette.background.paper,
                   '& .MuiTypography-root': {
-                    color: '#ffffff',
+                    color: theme.palette.text.primary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: '#64ffda', // Mint color for icons
+                    color: theme.palette.text.primary,
                   }
                 }}>
                   <Box display="flex" alignItems="center" mb={2}>
@@ -419,16 +475,16 @@ function App() {
                 </Paper>
               </Grid>
 
-              <Grid item xs={4} sm={4} md={4}>
+              <Grid item>
                 <Paper elevation={3} sx={{
                   p: 3,
                   height: '100%',
-                  background: 'rgba(23, 42, 69, 0.95)',
+                  background: theme.palette.background.paper,
                   '& .MuiTypography-root': {
-                    color: '#ffffff',
+                    color: theme.palette.text.primary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: '#64ffda',
+                    color: theme.palette.text.primary,
                   }
                 }}>
                   <Box display="flex" alignItems="center" mb={2}>
@@ -440,16 +496,16 @@ function App() {
                   </Typography>
                 </Paper>
               </Grid>
-              <Grid item xs={4} sm={4} md={4}>
+              <Grid item xs={4} sm={4} md={4} lg={3}>
                 <Paper elevation={3} sx={{
                   p: 3,
                   height: '100%',
-                  background: 'rgba(23, 42, 69, 0.95)',
+                  background: theme.palette.background.paper,
                   '& .MuiTypography-root': {
-                    color: '#ffffff',
+                    color: theme.palette.text.primary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: '#64ffda',
+                    color: theme.palette.text.primary,
                   }
                 }}>
                   <Box display="flex" alignItems="center" mb={2}>
@@ -461,21 +517,21 @@ function App() {
                       label={formatDateTime(deviceData?.firstSeen)}
                       color={'default'}
                       variant={'outlined'}
-                      sx={{ fontSize: '1.1rem', py: 1 }}
+                      sx={{ fontSize: '1.0rem', py: 0.5, px: 1 }}
                     />
                   </Box>
                 </Paper>
               </Grid>
-              <Grid item xs={4} sm={4} md={4}>
+              <Grid item xs={4} sm={4} md={4} lg={3}>
                 <Paper elevation={3} sx={{
                   p: 3,
                   height: '100%',
-                  background: 'rgba(23, 42, 69, 0.95)',
+                  background: theme.palette.background.paper,
                   '& .MuiTypography-root': {
-                    color: '#ffffff',
+                    color: theme.palette.text.primary,
                   },
                   '& .MuiSvgIcon-root': {
-                    color: '#64ffda',
+                    color: theme.palette.text.primary,
                   }
                 }}>
                   <Box display="flex" alignItems="center" mb={2}>
@@ -487,77 +543,66 @@ function App() {
                       label={formatDateTime(deviceData?.lastSeen)}
                       color={'default'}
                       variant={'outlined'}
-                      sx={{ fontSize: '1.1rem', py: 1 }}
+                      sx={{ fontSize: '1.0rem', py: 0.5, px: 1 }}
                     />
                   </Box>
                 </Paper>
               </Grid>
-            </Grid>
 
-            {deviceData?.message && (
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 3,
-                  mb: 6,
-                  background: 'rgba(23, 42, 69, 0.95)',
-                  border: '1px solid rgba(100, 255, 218, 0.3)',
-                  borderRadius: 2,
-                  position: 'relative',
-                  transition: 'transform 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                  },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: '2px',
-                    background: 'linear-gradient(90deg, #64ffda, transparent)'
-                  }
-                }}
-              >
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  gap={2}
-                  sx={{
-                    px: 2
-                  }}
-                >
-                  <Typography
-                    variant="h6"
+              {deviceData?.message && (
+                <Grid item xs={4} sm={4} md={4} lg={1}>
+                  <Paper
+                    elevation={3}
                     sx={{
-                      color: '#64ffda',
-                      opacity: 0.8,
+                      p: 3,
+                      height: '100%',
+                      background: theme.palette.background.paper,
+                      '& .MuiTypography-root': {
+                        color: theme.palette.text.primary,
+                      },
+                      '& .MuiSvgIcon-root': {
+                        color: theme.palette.text.primary,
+                      }
                     }}
                   >
-                    Welcome! This is your Visit #{deviceData.visitCount}
-                  </Typography>
-                </Box>
-              </Paper>
-            )}
+                    <Box
+                      display="flex"
+                      alignItems="center"
+                      mb={2}
+                    >
+                      <VisibilityIcon color="primary" sx={{ mr: 1 }} />
+                      <Typography variant="h6">Visit Count</Typography>
+                    </Box>
+                    <Typography variant="h5">
+                      {deviceData?.visitCount || 'Unknown'}
+                    </Typography>
+                  </Paper>
+                </Grid>
+              )}
+            </Grid>
 
             {/* Backend Status now shown in the Status card above */}
 
             {fingerprint && (
               <Accordion sx={{
-                background: 'transparent',
+                background: theme.palette.background.paper,
                 '& .MuiAccordionSummary-root': {
                   borderBottom: 'none',
                 }
               }}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography variant="h6">Fingerprint Details</Typography>
+                  <Typography variant="h6" sx={{color: theme.palette.text.primary}}>Fingerprint Details</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Grid container spacing={3}>
-                    <Grid item>
-                      <Card>
+                    <Grid item xs={12} md={6}>
+                      <Card sx={{
+                        background: theme.palette.background.paper,
+                        border: 'none', // Remove card border as paper has border
+                        boxShadow: 'none' // Remove card shadow
+                      }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom>Browser Info</Typography>
+                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Browser Info</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'User Agent': fingerprint.userAgent,
@@ -573,11 +618,11 @@ function App() {
                               }}>
                                 <Typography
                                   variant="subtitle2"
-                                  sx={{ color: 'text.secondary' }}
+                                  sx={{ color: theme.palette.text.primary }}
                                 >
                                   {key}
                                 </Typography>
-                                <Typography>
+                                <Typography sx={{color: theme.palette.text.primary}}>
                                   {value}
                                 </Typography>
                               </Paper>
@@ -589,9 +634,13 @@ function App() {
 
                     {/* WebGL Section */}
                     <Grid item xs={12} md={6}>
-                      <Card>
+                      <Card sx={{
+                        background: theme.palette.background.paper,
+                        border: 'none',
+                        boxShadow: 'none'
+                      }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom>WebGL</Typography>
+                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>WebGL</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Supported': fingerprint.webGLSupported,
@@ -606,11 +655,11 @@ function App() {
                               }}>
                                 <Typography
                                   variant="subtitle2"
-                                  sx={{ color: 'text.secondary' }}
+                                  sx={{ color: theme.palette.text.primary }}
                                 >
                                   {key}
                                 </Typography>
-                                <Typography>
+                                <Typography sx={{color: theme.palette.text.primary}}>
                                   {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
                                 </Typography>
                               </Paper>
@@ -621,9 +670,13 @@ function App() {
                     </Grid>
                     {/* Capabilities Section */}
                     <Grid item xs={12} md={4}>
-                      <Card>
+                      <Card sx={{
+                        background: theme.palette.background.paper,
+                        border: 'none',
+                        boxShadow: 'none'
+                      }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom>Capabilities</Typography>
+                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Capabilities</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Cookies': fingerprint.cookiesEnabled,
@@ -639,11 +692,11 @@ function App() {
                               }}>
                                 <Typography
                                   variant="subtitle2"
-                                  sx={{ color: 'text.secondary' }}
+                                  sx={{ color: theme.palette.text.primary }}
                                 >
                                   {key}
                                 </Typography>
-                                <Typography>
+                                <Typography sx={{color: theme.palette.text.primary}}>
                                   {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
                                 </Typography>
                               </Paper>
@@ -655,9 +708,13 @@ function App() {
 
                     {/* Screen & Hardware Section */}
                     <Grid item xs={12} md={4}>
-                      <Card>
+                      <Card sx={{
+                        background: theme.palette.background.paper,
+                        border: 'none',
+                        boxShadow: 'none'
+                      }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom>Screen & Hardware</Typography>
+                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Screen & Hardware</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {Object.entries({
                               'Screen Resolution': fingerprint.screenResolution,
@@ -673,11 +730,11 @@ function App() {
                               }}>
                                 <Typography
                                   variant="subtitle2"
-                                  sx={{ color: 'text.secondary' }}
+                                  sx={{ color: theme.palette.text.primary }}
                                 >
                                   {key}
                                 </Typography>
-                                <Typography>
+                                <Typography sx={{color: theme.palette.text.primary}}>
                                   {value}
                                 </Typography>
                               </Paper>
@@ -689,9 +746,13 @@ function App() {
 
                     {/* Plugins Section */}
                     <Grid item xs={12} md={4}>
-                      <Card>
+                      <Card sx={{
+                        background: theme.palette.background.paper,
+                        border: 'none',
+                        boxShadow: 'none'
+                      }}>
                         <CardContent>
-                          <Typography variant="h6" gutterBottom>Plugins ({Array.isArray(fingerprint.plugins) ? fingerprint.plugins.length : 0})</Typography>
+                          <Typography variant="h6" gutterBottom sx={{color: theme.palette.text.primary}}>Plugins ({Array.isArray(fingerprint.plugins) ? fingerprint.plugins.length : 0})</Typography>
                           <Box display="flex" flexDirection="column" gap={1}>
                             {(fingerprint.plugins || []).slice(0, 20).map((p, idx) => (
                               <Paper elevation={0} key={idx} sx={{
@@ -700,7 +761,7 @@ function App() {
                                 border: 'none',
                                 boxShadow: 'none'
                               }}>
-                                <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                                <Typography variant="subtitle2" sx={{ color: theme.palette.text.primary }}>
                                   {p?.name || 'Unknown Plugin'}
                                 </Typography>
                               </Paper>
