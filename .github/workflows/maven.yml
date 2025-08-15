@@ -24,7 +24,7 @@ jobs:
     - name: Install & Build UI
       run: |
         npm install
-        npm run build
+        CI=false npm run build
       working-directory: device-fingerprint-ui
 
     # ---- Build Backend ----

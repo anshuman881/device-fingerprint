@@ -10,7 +10,6 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DevicesIcon from '@mui/icons-material/Devices';
 import TimerIcon from '@mui/icons-material/Timer';
-import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import HistoryIcon from '@mui/icons-material/History';
 import WifiOffIcon from '@mui/icons-material/WifiOff';
@@ -85,7 +84,6 @@ const theme = createTheme({
 function App() {
   const [deviceData, setDeviceData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [fingerprint, setFingerprint] = useState(null);
   const [backendStatus, setBackendStatus] = useState(null);
   const [backendStatusError, setBackendStatusError] = useState(null);
