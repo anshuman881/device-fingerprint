@@ -107,7 +107,6 @@ function App() {
   const initializeDevice = async () => {
     try {
       if (!mounted) return;
-      setError(null);
 
       // Collect device fingerprint
       const fp = DeviceFingerprint.collect();
@@ -147,7 +146,6 @@ function App() {
             },
             error: (error) => {
               console.error('Error:', error);
-              setError(error.message);
               setLoading(false);
             }
           });
