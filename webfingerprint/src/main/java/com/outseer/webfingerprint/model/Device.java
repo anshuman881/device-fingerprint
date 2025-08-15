@@ -2,9 +2,9 @@ package com.outseer.webfingerprint.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "devices")

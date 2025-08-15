@@ -2,7 +2,7 @@ package com.outseer.webfingerprint.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 import java.util.Map;
@@ -12,10 +12,10 @@ import java.util.Map;
 public class DeviceFingerprintRequest {
     // Basic browser information
     // Computed hash or deviceId
+    @NotNull(message = "Hash cannot be null")
     private String hash;
     private String userAgent;
     private String language;
-    private List<String> languages;
     private String platform;
     private Boolean cookiesEnabled;
     private String screenResolution;
@@ -33,10 +33,32 @@ public class DeviceFingerprintRequest {
     private Object deviceMemory;
     private Object hardwareConcurrency;
 
-    // Default constructor
-    public DeviceFingerprintRequest() {}
+    public DeviceFingerprintRequest(){}
 
-    // Getters and Setters
+    public DeviceFingerprintRequest(String hash, String userAgent, String language, String platform, Boolean cookiesEnabled, String screenResolution, String timezone, List<Map<String, String>> plugins, String canvas, Object webGLFingerprint, Boolean touchSupport, Object deviceMemory, Object hardwareConcurrency) {
+        this.hash = hash;
+        this.userAgent = userAgent;
+        this.language = language;
+        this.platform = platform;
+        this.cookiesEnabled = cookiesEnabled;
+        this.screenResolution = screenResolution;
+        this.timezone = timezone;
+        this.plugins = plugins;
+        this.canvas = canvas;
+        this.webGLFingerprint = webGLFingerprint;
+        this.touchSupport = touchSupport;
+        this.deviceMemory = deviceMemory;
+        this.hardwareConcurrency = hardwareConcurrency;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
     public String getUserAgent() {
         return userAgent;
     }
@@ -53,14 +75,6 @@ public class DeviceFingerprintRequest {
         this.language = language;
     }
 
-    public List<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
-    }
-
     public String getPlatform() {
         return platform;
     }
@@ -75,6 +89,14 @@ public class DeviceFingerprintRequest {
 
     public void setCookiesEnabled(Boolean cookiesEnabled) {
         this.cookiesEnabled = cookiesEnabled;
+    }
+
+    public String getScreenResolution() {
+        return screenResolution;
+    }
+
+    public void setScreenResolution(String screenResolution) {
+        this.screenResolution = screenResolution;
     }
 
     public String getTimezone() {
@@ -101,7 +123,6 @@ public class DeviceFingerprintRequest {
         this.canvas = canvas;
     }
 
-    @JsonProperty("webGL")
     public Object getWebGLFingerprint() {
         return webGLFingerprint;
     }
@@ -132,21 +153,5 @@ public class DeviceFingerprintRequest {
 
     public void setHardwareConcurrency(Object hardwareConcurrency) {
         this.hardwareConcurrency = hardwareConcurrency;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public String getScreenResolution() {
-        return screenResolution;
-    }
-
-    public void setScreenResolution(String screenResolution) {
-        this.screenResolution = screenResolution;
     }
 }

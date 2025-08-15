@@ -3,6 +3,7 @@ package com.outseer.webfingerprint.service;
 
 import com.outseer.webfingerprint.dto.DeviceFingerprintRequest;
 import com.outseer.webfingerprint.dto.DeviceTrackingResponse;
+import com.outseer.webfingerprint.exception.DeviceNotFoundException;
 import com.outseer.webfingerprint.model.Device;
 import com.outseer.webfingerprint.repository.DeviceRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class DeviceTrackingService {
      * @param request Device fingerprint data from client
      * @return DeviceTrackingResponse with visit count and welcome message
      */
-    public DeviceTrackingResponse creteDeviceInfo(DeviceFingerprintRequest request) {
+    public DeviceTrackingResponse createDeviceInfo(DeviceFingerprintRequest request) {
         Device device = new Device(request.getHash(), request.getUserAgent(), request.getScreenResolution(), request.getTimezone()
                 , request.getLanguage(), request.getPlatform());
         deviceRepository.save(device);
@@ -46,7 +47,7 @@ public class DeviceTrackingService {
             saveDevice(device.get());
             return createDeviceTrackingResponse(device.get(), "success");
         } else {
-            throw new RuntimeException();
+            throw new DeviceNotFoundException("Device Not Found");
         }
     }
 
@@ -56,6 +57,7 @@ public class DeviceTrackingService {
      */
     public void saveDevice(Device device) {
         device.setVisitCount(device.getVisitCount() + 1);
+        device.setLastSeen(LocalDateTime.now());
         deviceRepository.save(device);
     }
 
@@ -69,10 +71,11 @@ public class DeviceTrackingService {
         return new DeviceTrackingResponse(
                 device.getDeviceId(),
                 Duration.between(device.getFirstSeen(), LocalDateTime.now()).toMinutes(),
-                true,
-                "Welcome! This is your" + device.getVisitCount() + "visit.",
+                "Welcome! This is your " + device.getVisitCount() + " visit.",
                 device.getVisitCount(),
-                status
+                status,
+                device.getFirstSeen(),
+                device.getLastSeen()
         );
     }
 }

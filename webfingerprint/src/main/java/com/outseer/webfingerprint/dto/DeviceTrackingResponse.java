@@ -1,27 +1,29 @@
 package com.outseer.webfingerprint.dto;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 public class DeviceTrackingResponse {
     private String deviceId;
     private long ageMinutes;
-    private boolean isNewDevice;
     private String message;
     private int visitCount;
     private String status;
+    private LocalDateTime firstSeen;
+    private LocalDateTime lastSeen;
 
-    // Default constructor
-    public DeviceTrackingResponse() {}
+    public DeviceTrackingResponse(){}
 
-    // Constructor with parameters
-    public DeviceTrackingResponse(String deviceId, long ageMinutes, boolean isNewDevice, String message,int visitCount,String status) {
+    public DeviceTrackingResponse(String deviceId, long ageMinutes, String message, int visitCount, String status, LocalDateTime firstSeen, LocalDateTime lastSeen) {
         this.deviceId = deviceId;
         this.ageMinutes = ageMinutes;
-        this.isNewDevice = isNewDevice;
         this.message = message;
         this.visitCount = visitCount;
         this.status = status;
+        this.firstSeen = firstSeen;
+        this.lastSeen = lastSeen;
     }
 
-    // Getters and Setters
     public String getDeviceId() {
         return deviceId;
     }
@@ -36,14 +38,6 @@ public class DeviceTrackingResponse {
 
     public void setAgeMinutes(long ageMinutes) {
         this.ageMinutes = ageMinutes;
-    }
-
-    public boolean isNewDevice() {
-        return isNewDevice;
-    }
-
-    public void setNewDevice(boolean newDevice) {
-        isNewDevice = newDevice;
     }
 
     public String getMessage() {
@@ -68,5 +62,21 @@ public class DeviceTrackingResponse {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDateTime getFirstSeen() {
+        return firstSeen;
+    }
+
+    public void setFirstSeen(LocalDateTime firstSeen) {
+        this.firstSeen = firstSeen;
+    }
+
+    public LocalDateTime getLastSeen() {
+        return lastSeen;
+    }
+
+    public void setLastSeen(LocalDateTime lastSeen) {
+        this.lastSeen = lastSeen;
     }
 }

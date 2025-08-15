@@ -18,10 +18,11 @@ const DeviceFingerprint = {
     // Get stable fingerprint components (excluding dynamic properties)
     getStableFingerprint() {
         return {
-            // userAgent: navigator.userAgent,
+            userAgent: navigator.userAgent,
             language: navigator.language,
             platform: navigator.platform,
             cookiesEnabled: navigator.cookieEnabled,
+            localStorage: (function() { try { return typeof window.localStorage !== 'undefined'; } catch (e) { return false; } })(),
 
             // Screen info (stable)
             screenResolution: `${window.screen.width}x${window.screen.height}`,
@@ -32,14 +33,14 @@ const DeviceFingerprint = {
             timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
 
             // Browser capabilities
-            webGL: !!window.WebGLRenderingContext,
+            webGLSupported: !!window.WebGLRenderingContext,
 
             // Hardware info
             touchSupport: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
             deviceMemory: navigator.deviceMemory || 'unknown',
             hardwareConcurrency: navigator.hardwareConcurrency || 'unknown',
 
-            // Stable canvas fingerprint
+            // Stable canvas fingerprint and GL info
             webGL: this.getWebGLFingerprint(),
             plugins: this.getPlugins()
         };
@@ -100,7 +101,7 @@ const DeviceFingerprint = {
 
     getHashCode() {
         const stableComponents = this.getStableFingerprint();
-        console.log("stableComponents",stableComponents);
+        console.log("stableComponents", stableComponents);
         return this.simpleHash(JSON.stringify(stableComponents));
     }
 };
