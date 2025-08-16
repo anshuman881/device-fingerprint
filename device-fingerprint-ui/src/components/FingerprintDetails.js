@@ -23,7 +23,7 @@ const FingerprintDetails = ({ fingerprint }) => {
             <Grid item xs={12} md={6} width={'48%'}>
               <Card sx={{
                 background: theme.palette.background.paper,
-                border: 'none', // Remove card border as paper has border
+                border: 'theme.palette.background.paper', // Remove card border as paper has border
                 boxShadow: 'none' // Remove card shadow
               }}>
                 <CardContent>
@@ -39,7 +39,7 @@ const FingerprintDetails = ({ fingerprint }) => {
                         p: 1,
                         bgcolor: 'transparent',
                         border: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography
                           variant="subtitle2"
@@ -56,12 +56,11 @@ const FingerprintDetails = ({ fingerprint }) => {
                 </CardContent>
               </Card>
             </Grid>
-
             {/* WebGL Section */}
             <Grid item xs={12} md={6} width={'49%'}>
               <Card sx={{
                 background: theme.palette.background.paper,
-                border: 'none',
+                border: 'theme.palette.background.paper',
                 boxShadow: 'none'
               }}>
                 <CardContent>
@@ -76,7 +75,7 @@ const FingerprintDetails = ({ fingerprint }) => {
                         p: 1,
                         bgcolor: 'transparent',
                         border: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography
                           variant="subtitle2"
@@ -97,7 +96,7 @@ const FingerprintDetails = ({ fingerprint }) => {
             <Grid item xs={12} md={4} width={'31%'}>
               <Card sx={{
                 background: theme.palette.background.paper,
-                border: 'none',
+                border: 'theme.palette.background.paper',
                 boxShadow: 'none'
               }}>
                 <CardContent>
@@ -113,7 +112,7 @@ const FingerprintDetails = ({ fingerprint }) => {
                         p: 1,
                         bgcolor: 'transparent',
                         border: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography
                           variant="subtitle2"
@@ -130,12 +129,11 @@ const FingerprintDetails = ({ fingerprint }) => {
                 </CardContent>
               </Card>
             </Grid>
-
             {/* Screen & Hardware Section */}
             <Grid item xs={12} md={4} width={'32%'}>
               <Card sx={{
                 background: theme.palette.background.paper,
-                border: 'none',
+                border: 'theme.palette.background.paper',
                 boxShadow: 'none'
               }}>
                 <CardContent>
@@ -151,7 +149,7 @@ const FingerprintDetails = ({ fingerprint }) => {
                         p: 1,
                         bgcolor: 'transparent',
                         border: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography
                           variant="subtitle2"
@@ -168,12 +166,11 @@ const FingerprintDetails = ({ fingerprint }) => {
                 </CardContent>
               </Card>
             </Grid>
-
             {/* Plugins Section */}
             <Grid item xs={12} md={4} width={'32%'}>
               <Card sx={{
                 background: theme.palette.background.paper,
-                border: 'none',
+                border: 'theme.palette.background.paper',
                 boxShadow: 'none'
               }}>
                 <CardContent>
@@ -181,10 +178,10 @@ const FingerprintDetails = ({ fingerprint }) => {
                   <Box display="flex" flexDirection="column" gap={1}>
                     {(fingerprint.plugins || []).slice(0, 20).map((p, idx) => (
                       <Paper elevation={0} key={idx} sx={{
-                        p: 1,
+                        p: 1.6,
                         bgcolor: 'transparent',
                         border: 'none',
-                        boxShadow: 'none'
+                        boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography variant="subtitle2" sx={{ color: theme.palette.text.primary }}>
                           {p?.name || 'Unknown Plugin'}

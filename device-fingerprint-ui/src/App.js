@@ -178,7 +178,8 @@ function App() {
                 background: 'linear-gradient(180deg, #FFFFFF, #B3B3B3)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                textShadow: '0 6px 25px rgba(0,0,0,0.4)'
+                textShadow: '0 6px 25px rgba(0,0,0,0.4)',
+                padding: '10px 0px 20px 0px',
               }}
             >
               Device Tracker

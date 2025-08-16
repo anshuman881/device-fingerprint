@@ -14,7 +14,8 @@ const theme = createTheme({
     text: {
       primary: '#FFFFFF', // Keep primary text white for contrast
       secondary: '#90CAF9' // Brighter light blue for secondary text
-    }
+    },
+    boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset 0 1px rgba(255,255,255,0.06)',
   },
   shape: { borderRadius: 12 }, // Slightly rounded corners, typical Apple
   typography: {
@@ -38,6 +39,7 @@ const theme = createTheme({
           '&:hover': {
             transform: 'translateY(-4px)',
             boxShadow: '0 15px 45px rgba(0,0,0,0.6), inset 0 1px rgba(255,255,255,0.1)',
+            border: '1px solid rgba(144, 202, 249, 0.3)',
           },
         }
       }
