@@ -22,7 +22,7 @@ const DeviceFingerprint = {
             language: navigator.language,
             platform: navigator.platform,
             cookiesEnabled: navigator.cookieEnabled,
-            localStorage: (function() { try { return typeof window.localStorage !== 'undefined'; } catch (e) { return false; } })(),
+            localStorage: (function () { try { return typeof window.localStorage !== 'undefined'; } catch (e) { return false; } })(),
 
             // Screen info (stable)
             screenResolution: `${window.screen.width}x${window.screen.height}`,

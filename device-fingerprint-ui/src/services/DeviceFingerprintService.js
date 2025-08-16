@@ -7,12 +7,9 @@ const headers = {
     'Accept': 'application/json'
 };
 
-export const getDeviceData = (hash) => {
+const fetchObservable = (url, options) => {
     return new Observable(subscriber => {
-        fetch(`${API_BASE_URL}/device/${hash}`, {
-            method: 'GET',
-            headers
-        })
+        fetch(url, options)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -24,33 +21,24 @@ export const getDeviceData = (hash) => {
                 subscriber.complete();
             })
             .catch(error => {
-                console.error('Error fetching device data:', error);
+                console.error(`Error fetching from ${url}:`, error);
                 subscriber.error(error);
             });
     });
 };
 
+export const getDeviceData = (hash) => {
+    return fetchObservable(`${API_BASE_URL}/device/${hash}`, {
+        method: 'GET',
+        headers
+    });
+};
+
 export const createDevice = (deviceData) => {
-    return new Observable(subscriber => {
-        fetch(`${API_BASE_URL}/device`, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(deviceData)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                subscriber.next(data);
-                subscriber.complete();
-            })
-            .catch(error => {
-                console.error('Error creating device:', error);
-                subscriber.error(error);
-            });
+    return fetchObservable(`${API_BASE_URL}/device`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(deviceData)
     });
 };
 
@@ -70,6 +58,7 @@ export const getBackendStatus = () => {
                 subscriber.complete();
             })
             .catch(error => {
+                console.error('Error checking backend status:', error);
                 subscriber.error(error);
             });
 

@@ -3,24 +3,18 @@ import DeviceFingerprint from './components/DeviceFingerPrint';
 import { getDeviceData, createDevice, getBackendStatus } from './services/DeviceFingerprintService';
 import { motion } from 'framer-motion';
 import {
-  Card, CardContent, Typography, CircularProgress,
-  Chip, Accordion, AccordionSummary, AccordionDetails,
-  Grid, Paper, Box, Container, Button
+  Typography, Container, Box, Card, CardContent, Grid, Paper, Chip
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import DevicesIcon from '@mui/icons-material/Devices';
-import TimerIcon from '@mui/icons-material/Timer';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import HistoryIcon from '@mui/icons-material/History';
-import WifiOffIcon from '@mui/icons-material/WifiOff';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { ThemeProvider } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import './App.css';
 import { formatDeviceAge, parseToDate, formatDateTime } from './utils/formatters';
 import theme, { auroraShift } from './theme';
+import LoadingScreen from './components/LoadingScreen';
+import BackendErrorScreen from './components/BackendErrorScreen';
+import FingerprintDetails from './components/FingerprintDetails';
+import DeviceDataDisplay from './components/DeviceDataDisplay'; // New import
 
 function App() {
   const [deviceData, setDeviceData] = useState(null);
@@ -49,7 +43,6 @@ function App() {
     try {
       if (!mounted) return;
       setLoading(true);
-
       // Collect device fingerprint
       const fp = DeviceFingerprint.collect();
       if (!mounted) return;
@@ -141,121 +134,23 @@ function App() {
 
   if (loading) {
     return (
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            bgcolor: 'background.default',
-            minHeight: '100vh',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          <Particles
-            id="tsparticles"
-            init={particlesInit}
-            options={particlesConfig}
-          />
-          <Box
-            sx={{
-              position: 'relative',
-              zIndex: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: '100vh',
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Typography
-                variant="h2"
-                gutterBottom
-                textAlign="center"
-                sx={{
-                  color: theme.palette.text.primary,
-                  textShadow: '0 0 15px rgba(21, 101, 192, 0.5)', // Adjusted blue glow for title
-                  fontWeight: theme.typography.h2.fontWeight,
-                  letterSpacing: theme.typography.h2.letterSpacing
-                }}
-              >
-                Device Tracker
-              </Typography>
-              <Box textAlign="center" mt={4}>
-                <motion.div
-                  animate={{
-                    rotate: 360
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  <CircularProgress
-                    size={80}
-                    thickness={4}
-                    sx={{
-                      color: theme.palette.primary.main,
-                      filter: 'drop-shadow(0 0 15px rgba(21, 101, 192, 0.6))', // Adjusted blue drop shadow
-                    }}
-                  />
-                </motion.div>
-                <Typography
-                  variant="h6"
-                  mt={3}
-                  sx={{
-                    color: theme.palette.text.primary,
-                    textShadow: '0 0 8px rgba(21, 101, 192, 0.3)', // Adjusted subtle blue text shadow
-                  }}
-                >
-                  Analyzing device fingerprint...
-                </Typography>
-              </Box>
-            </motion.div>
-          </Box>
-        </Box>
-      </ThemeProvider>
+      <LoadingScreen
+        particlesInit={particlesInit}
+        particlesConfig={particlesConfig}
+      />
     );
   }
 
   // Funny offline screen when actuator check fails
   if (backendStatusError && !backendStatus) {
     return (
-      <ThemeProvider theme={theme}>
-        <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
-          <Particles id="tsparticles" init={particlesInit} options={particlesConfig} />
-          <Box sx={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <Box textAlign="center">
-                <WifiOffIcon sx={{ fontSize: 80, color: theme.palette.error.main }} />
-                <Typography variant="h3" sx={{ mt: 2, color: theme.palette.text.primary, fontWeight: 700 }}>Uh‑oh, backend took a coffee break!</Typography>
-                <Typography variant="h6" sx={{ mt: 1, color: theme.palette.text.primary }}>We can't reach the server right now. It might be stretching its legs.</Typography>
-                <SentimentVeryDissatisfiedIcon sx={{ mt: 2, fontSize: 40, color: theme.palette.text.primary }} />
-                <Box sx={{ mt: 4 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => {
-                      setBackendStatusError(null);
-                      const subscription = getBackendStatus().subscribe({
-                        next: (data) => setBackendStatus(data),
-                        error: () => setBackendStatusError('Backend Unavailable')
-                      });
-                      setTimeout(() => subscription.unsubscribe(), 5000);
-                    }}
-                  >
-                    Try Again
-                  </Button>
-                </Box>
-              </Box>
-            </motion.div>
-          </Box>
-        </Box>
-      </ThemeProvider>
+      <BackendErrorScreen
+        particlesInit={particlesInit}
+        particlesConfig={particlesConfig}
+        setBackendStatusError={setBackendStatusError}
+        getBackendStatus={getBackendStatus}
+        setBackendStatus={setBackendStatus}
+      />
     );
   }
 
@@ -289,327 +184,11 @@ function App() {
               Device Tracker
             </Typography>
 
-            <Grid container spacing={3} sx={{ mb: 8 }}>
-              <Grid item>
-                <Paper elevation={3} sx={{
-                  p: 3,
-                  height: '100%',
-                  background: theme.palette.background.paper,
-                  '& .MuiTypography-root': {
-                    color: theme.palette.text.primary,
-                  },
-                  '& .MuiSvgIcon-root': {
-                    color: theme.palette.text.primary,
-                  }
-                }}>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <DevicesIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">Device ID</Typography>
-                  </Box>
-                  <Typography variant="h5">
-                    {deviceData?.deviceId || 'Unknown'}
-                  </Typography>
-                </Paper>
-              </Grid>
-
-              <Grid item>
-                <Paper elevation={3} sx={{
-                  p: 3,
-                  height: '100%',
-                  background: theme.palette.background.paper,
-                  '& .MuiTypography-root': {
-                    color: theme.palette.text.primary,
-                  },
-                  '& .MuiSvgIcon-root': {
-                    color: theme.palette.text.primary,
-                  }
-                }}>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <TimerIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">Age</Typography>
-                  </Box>
-                  <Typography variant="h5">
-                    {deviceData ? formatDeviceAge(deviceData.ageMinutes) : 'Unknown'}
-                  </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={4} sm={4} md={4} lg={3}>
-                <Paper elevation={3} sx={{
-                  p: 3,
-                  height: '100%',
-                  background: theme.palette.background.paper,
-                  '& .MuiTypography-root': {
-                    color: theme.palette.text.primary,
-                  },
-                  '& .MuiSvgIcon-root': {
-                    color: theme.palette.text.primary,
-                  }
-                }}>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <CalendarTodayIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">First Visit Time</Typography>
-                  </Box>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <Chip
-                      label={formatDateTime(deviceData?.firstSeen)}
-                      color={'default'}
-                      variant={'outlined'}
-                      sx={{ fontSize: '1.0rem', py: 0.5, px: 1 }}
-                    />
-                  </Box>
-                </Paper>
-              </Grid>
-              <Grid item xs={4} sm={4} md={4} lg={3}>
-                <Paper elevation={3} sx={{
-                  p: 3,
-                  height: '100%',
-                  background: theme.palette.background.paper,
-                  '& .MuiTypography-root': {
-                    color: theme.palette.text.primary,
-                  },
-                  '& .MuiSvgIcon-root': {
-                    color: theme.palette.text.primary,
-                  }
-                }}>
-                  <Box display="flex" alignItems="center" mb={2}>
-                    <HistoryIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">Last Visit Time</Typography>
-                  </Box>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <Chip
-                      label={formatDateTime(deviceData?.lastSeen)}
-                      color={'default'}
-                      variant={'outlined'}
-                      sx={{ fontSize: '1.0rem', py: 0.5, px: 1 }}
-                    />
-                  </Box>
-                </Paper>
-              </Grid>
-              <Grid item xs={4} sm={4} md={4} lg={1} 
-                    mt={5}>
-                <Paper
-                  elevation={3}
-                    mt={4}
-                  sx={{
-                    p: 3,
-                    height: '100%',
-                    background: theme.palette.background.paper,
-                    '& .MuiTypography-root': {
-                      color: theme.palette.text.primary,
-                    },
-                    '& .MuiSvgIcon-root': {
-                      color: theme.palette.text.primary,
-                    }
-                  }}
-                >
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    mb={2}
-                  >
-                    <VisibilityIcon color="primary" sx={{ mr: 1 }} />
-                    <Typography variant="h6">Visit Count</Typography>
-                  </Box>
-                  <Typography variant="h5">
-                    {deviceData?.visitCount || 'Unknown'}
-                  </Typography>
-                </Paper>
-              </Grid>
-            </Grid>
+            <DeviceDataDisplay deviceData={deviceData} />
 
             {/* Backend Status now shown in the Status card above */}
 
-            {fingerprint && (
-              <Accordion sx={{
-                background: theme.palette.background.paper,
-                '& .MuiAccordionSummary-root': {
-                  borderBottom: 'none',
-                }
-              }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography variant="h6" sx={{ color: theme.palette.text.primary }}>Fingerprint Details</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} md={6}>
-                      <Card sx={{
-                        background: theme.palette.background.paper,
-                        border: 'none', // Remove card border as paper has border
-                        boxShadow: 'none' // Remove card shadow
-                      }}>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Browser Info</Typography>
-                          <Box display="flex" flexDirection="column" gap={1}>
-                            {Object.entries({
-                              'User Agent': fingerprint.userAgent,
-                              'Language': fingerprint.language,
-                              'Platform': fingerprint.platform,
-                              'Timezone': fingerprint.timezone
-                            }).map(([key, value]) => (
-                              <Paper elevation={0} key={key} sx={{
-                                p: 1,
-                                bgcolor: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none'
-                              }}>
-                                <Typography
-                                  variant="subtitle2"
-                                  sx={{ color: theme.palette.text.primary }}
-                                >
-                                  {key}
-                                </Typography>
-                                <Typography sx={{ color: theme.palette.text.primary }}>
-                                  {value}
-                                </Typography>
-                              </Paper>
-                            ))}
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-
-                    {/* WebGL Section */}
-                    <Grid item xs={12} md={6}>
-                      <Card sx={{
-                        background: theme.palette.background.paper,
-                        border: 'none',
-                        boxShadow: 'none'
-                      }}>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>WebGL</Typography>
-                          <Box display="flex" flexDirection="column" gap={1}>
-                            {Object.entries({
-                              'Supported': fingerprint.webGLSupported,
-                              'Vendor': fingerprint.webGL?.vendor || 'Unknown',
-                              'Renderer': fingerprint.webGL?.renderer || 'Unknown'
-                            }).map(([key, value]) => (
-                              <Paper elevation={0} key={key} sx={{
-                                p: 1,
-                                bgcolor: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none'
-                              }}>
-                                <Typography
-                                  variant="subtitle2"
-                                  sx={{ color: theme.palette.text.primary }}
-                                >
-                                  {key}
-                                </Typography>
-                                <Typography sx={{ color: theme.palette.text.primary }}>
-                                  {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
-                                </Typography>
-                              </Paper>
-                            ))}
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                    {/* Capabilities Section */}
-                    <Grid item xs={12} md={4}>
-                      <Card sx={{
-                        background: theme.palette.background.paper,
-                        border: 'none',
-                        boxShadow: 'none'
-                      }}>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Capabilities</Typography>
-                          <Box display="flex" flexDirection="column" gap={1}>
-                            {Object.entries({
-                              'Cookies': fingerprint.cookiesEnabled,
-                              'Local Storage': fingerprint.localStorage,
-                              'Touch Support': fingerprint.touchSupport,
-                              'Hardware Concurrency': fingerprint.hardwareConcurrency
-                            }).map(([key, value]) => (
-                              <Paper elevation={0} key={key} sx={{
-                                p: 1,
-                                bgcolor: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none'
-                              }}>
-                                <Typography
-                                  variant="subtitle2"
-                                  sx={{ color: theme.palette.text.primary }}
-                                >
-                                  {key}
-                                </Typography>
-                                <Typography sx={{ color: theme.palette.text.primary }}>
-                                  {typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}
-                                </Typography>
-                              </Paper>
-                            ))}
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-
-                    {/* Screen & Hardware Section */}
-                    <Grid item xs={12} md={4}>
-                      <Card sx={{
-                        background: theme.palette.background.paper,
-                        border: 'none',
-                        boxShadow: 'none'
-                      }}>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Screen & Hardware</Typography>
-                          <Box display="flex" flexDirection="column" gap={1}>
-                            {Object.entries({
-                              'Screen Resolution': fingerprint.screenResolution,
-                              'Color Depth': fingerprint.colorDepth,
-                              'Pixel Depth': fingerprint.pixelDepth,
-                              'Device Memory (GB)': fingerprint.deviceMemory
-                            }).map(([key, value]) => (
-                              <Paper elevation={0} key={key} sx={{
-                                p: 1,
-                                bgcolor: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none'
-                              }}>
-                                <Typography
-                                  variant="subtitle2"
-                                  sx={{ color: theme.palette.text.primary }}
-                                >
-                                  {key}
-                                </Typography>
-                                <Typography sx={{ color: theme.palette.text.primary }}>
-                                  {value}
-                                </Typography>
-                              </Paper>
-                            ))}
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-
-                    {/* Plugins Section */}
-                    <Grid item xs={12} md={4}>
-                      <Card sx={{
-                        background: theme.palette.background.paper,
-                        border: 'none',
-                        boxShadow: 'none'
-                      }}>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom sx={{ color: theme.palette.text.primary }}>Plugins ({Array.isArray(fingerprint.plugins) ? fingerprint.plugins.length : 0})</Typography>
-                          <Box display="flex" flexDirection="column" gap={1}>
-                            {(fingerprint.plugins || []).slice(0, 20).map((p, idx) => (
-                              <Paper elevation={0} key={idx} sx={{
-                                p: 1,
-                                bgcolor: 'transparent',
-                                border: 'none',
-                                boxShadow: 'none'
-                              }}>
-                                <Typography variant="subtitle2" sx={{ color: theme.palette.text.primary }}>
-                                  {p?.name || 'Unknown Plugin'}
-                                </Typography>
-                              </Paper>
-                            ))}
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  </Grid>
-                </AccordionDetails>
-              </Accordion>
-            )}
+            <FingerprintDetails fingerprint={fingerprint} />
 
             <Box mt={4} textAlign="center">
               <Typography variant="body2" color="textSecondary">
