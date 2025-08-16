@@ -30,7 +30,7 @@ const DeviceDataDisplay = ({ deviceData }) => {
                         <Typography variant="h6">Device ID</Typography>
                     </Box>
                     <Typography variant="h5">
-                        {deviceData?.deviceId || 'Unknown'}
+                        {deviceData?.deviceId || 'Loading...'}
                     </Typography>
                 </Paper>
             </Grid>
@@ -51,7 +51,7 @@ const DeviceDataDisplay = ({ deviceData }) => {
                         <Typography variant="h6">Age</Typography>
                     </Box>
                     <Typography variant="h5">
-                        {deviceData ? formatDeviceAge(deviceData.ageMinutes) : 'Unknown'}
+                        {deviceData ? formatDeviceAge(deviceData.ageMinutes) : 'Loading...'}
                     </Typography>
                 </Paper>
             </Grid>
@@ -132,7 +132,7 @@ const DeviceDataDisplay = ({ deviceData }) => {
                         <Typography variant="h6">Visit</Typography>
                     </Box>
                     <Typography variant="h5">
-                        {deviceData?.visitCount || 'Unknown'}
+                        {deviceData?.visitCount || 'Loading...'}
                     </Typography>
                 </Paper>
             </Grid>

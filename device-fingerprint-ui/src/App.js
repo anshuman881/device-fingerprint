@@ -47,7 +47,8 @@ function App() {
       const fp = DeviceFingerprint.collect();
       if (!mounted) return;
       setFingerprint(fp);
-      const hash = DeviceFingerprint.getHashCode();
+      // Use the cross-browser consistent hash instead of browser-specific hash
+      const hash = DeviceFingerprint.getCrossBrowserHashCode();
       // Send fingerprint to backend using the stable device ID
       const payload = {
         hash: hash,
@@ -81,7 +82,7 @@ function App() {
             },
             error: (error) => {
               console.error('Error:', error);
-              setBackendStatusError(error.message); // Using backendStatusError for general errors
+              setBackendStatusError(error.message);
               setLoading(false);
             }
           });

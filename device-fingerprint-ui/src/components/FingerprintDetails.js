@@ -68,8 +68,8 @@ const FingerprintDetails = ({ fingerprint }) => {
                   <Box display="flex" flexDirection="column" gap={1}>
                     {Object.entries({
                       'Supported': fingerprint.webGLSupported,
-                      'Vendor': fingerprint.webGL?.vendor || 'Unknown',
-                      'Renderer': fingerprint.webGL?.renderer || 'Unknown'
+                      'Vendor': fingerprint.webGL?.vendor || 'Loading...',
+                      'Renderer': fingerprint.webGL?.renderer || 'Loading...'
                     }).map(([key, value]) => (
                       <Paper elevation={0} key={key} sx={{
                         p: 1,
@@ -184,7 +184,7 @@ const FingerprintDetails = ({ fingerprint }) => {
                         boxShadow: 'theme.palette.background.paper'
                       }}>
                         <Typography variant="subtitle2" sx={{ color: theme.palette.text.primary }}>
-                          {p?.name || 'Unknown Plugin'}
+                          {p?.name || 'Loading... Plugin'}
                         </Typography>
                       </Paper>
                     ))}

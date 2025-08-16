@@ -20,7 +20,7 @@ export const parseToDate = (value) => {
 
 export const formatDateTime = (value) => {
   const date = parseToDate(value);
-  if (!date || isNaN(date.getTime())) return 'Unknown';
+  if (!date || isNaN(date.getTime())) return 'Loading...';
   return date.toLocaleString(undefined, {
     year: 'numeric',
     month: 'short',
