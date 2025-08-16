@@ -103,7 +103,88 @@ const DeviceFingerprint = {
         const stableComponents = this.getStableFingerprint();
         console.log("stableComponents", stableComponents);
         return this.simpleHash(JSON.stringify(stableComponents));
-    }
+    },
+
+    // Get hardware-specific fingerprint components (consistent across browsers)
+    getHardwareFingerprint() {
+        return {
+            // Screen hardware info (stable across browsers)
+            screenResolution: `${window.screen.width}x${window.screen.height}`,
+            screenAvailResolution: `${window.screen.availWidth}x${window.screen.availHeight}`,
+            colorDepth: window.screen.colorDepth,
+            pixelDepth: window.screen.pixelDepth,
+
+            // Timezone (generally consistent across browsers on same system)
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            timezoneOffset: new Date().getTimezoneOffset(),
+
+            // Hardware info (consistent across browsers)
+            touchSupport: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+            deviceMemory: navigator.deviceMemory || 'unknown',
+            hardwareConcurrency: navigator.hardwareConcurrency || 'unknown',
+
+            // Platform info (more stable than userAgent)
+            platform: navigator.platform,
+
+            // Basic capabilities (usually consistent)
+            cookiesEnabled: navigator.cookieEnabled,
+            localStorage: (function () { try { return typeof window.localStorage !== 'undefined'; } catch (e) { return false; } })(),
+            webGLSupported: !!window.WebGLRenderingContext,
+
+            // Hardware-based canvas fingerprint (avoid text rendering which can vary)
+            canvasHardwareHash: this.getHardwareBasedCanvasFingerprint(),
+
+            // Screen orientation capability
+            orientationSupport: 'orientation' in window || 'screen' in window && 'orientation' in window.screen
+        };
+    },
+
+    // Get hardware-based canvas fingerprint (more consistent across browsers)
+    getHardwareBasedCanvasFingerprint() {
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 200;
+            canvas.height = 50;
+
+            // Use geometric shapes only (no text which can vary between browsers)
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 200, 50);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(10, 10, 180, 30);
+
+            // Simple geometric shapes that rely on hardware rendering
+            ctx.beginPath();
+            ctx.arc(50, 25, 15, 0, 2 * Math.PI);
+            ctx.fill();
+
+            ctx.fillRect(100, 15, 20, 20);
+            ctx.beginPath();
+            ctx.moveTo(150, 15);
+            ctx.lineTo(170, 25);
+            ctx.lineTo(150, 35);
+            ctx.closePath();
+            ctx.fill();
+
+            // Get image data and create a simple hash
+            const imageData = ctx.getImageData(0, 0, 200, 50);
+            let hash = 0;
+            for (let i = 0; i < imageData.data.length; i += 10) { // Sample every 10th pixel for performance
+                hash = ((hash << 3) - hash) + imageData.data[i];
+                hash = hash & hash;
+            }
+            return Math.abs(hash).toString(16);
+        } catch (e) {
+            return 'canvas-not-supported';
+        }
+    },
+
+    // Get cross-browser consistent hash code
+    getCrossBrowserHashCode() {
+        const hardwareComponents = this.getHardwareFingerprint();
+        console.log("hardwareComponents (cross-browser)", hardwareComponents);
+        return this.simpleHash(JSON.stringify(hardwareComponents));
+    },
 };
 
 export default DeviceFingerprint;
