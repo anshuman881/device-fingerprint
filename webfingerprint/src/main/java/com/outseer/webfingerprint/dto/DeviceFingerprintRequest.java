@@ -3,7 +3,6 @@ package com.outseer.webfingerprint.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 import java.util.Map;
@@ -15,19 +14,13 @@ public class DeviceFingerprintRequest {
     // Computed hash or deviceId
     @NotNull(message = "Hash cannot be null")
     private String hash;
-    @NotBlank(message = "User agent cannot be blank")
     private String userAgent;
-    @NotBlank(message = "Language cannot be blank")
     private String language;
-    @NotBlank(message = "Platform cannot be blank")
     private String platform;
-    @NotNull(message = "Cookies enabled cannot be null")
     private Boolean cookiesEnabled;
-    @NotBlank(message = "Screen resolution cannot be blank")
     private String screenResolution;
 
     // Time zone information
-    @NotBlank(message = "Timezone cannot be blank")
     private String timezone;
 
     // Graphics and rendering

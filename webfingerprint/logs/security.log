@@ -1,0 +1,228 @@
+2025-08-18 11:38:05.818 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:38:05.940 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:38:07.692 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:38:07.759 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:07.769 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:38:08.293 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:38:08.293 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:08.294 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:38:08.659 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/nonExistentHash
+2025-08-18 11:38:08.659 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:08.660 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/nonExistentHash
+2025-08-18 11:38:08.695 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/testHash
+2025-08-18 11:38:08.697 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:08.698 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/testHash
+2025-08-18 11:38:10.304 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:38:10.325 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:38:27.871 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:38:28.009 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:38:29.499 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:38:29.524 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:29.532 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:38:29.868 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:38:29.870 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:29.871 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:38:30.173 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/nonExistentHash
+2025-08-18 11:38:30.174 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:30.176 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/nonExistentHash
+2025-08-18 11:38:30.207 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/testHash
+2025-08-18 11:38:30.208 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:38:30.209 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/testHash
+2025-08-18 11:38:31.697 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:38:31.725 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:47:15.346 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:47:15.466 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:47:16.948 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:47:16.982 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:16.993 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:47:17.407 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:47:17.408 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:17.409 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:47:17.674 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/nonExistentHash
+2025-08-18 11:47:17.675 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:17.676 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/nonExistentHash
+2025-08-18 11:47:17.701 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/testHash
+2025-08-18 11:47:17.703 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:17.704 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/testHash
+2025-08-18 11:47:18.090 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: TEST_SECURITY - Test security event
+2025-08-18 11:47:18.091 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_FAILED - Failed authentication for user: test-user from IP: 192.168.1.1 - Context: {username=test-user, ipAddress=192.168.1.1, reason=Invalid password}
+2025-08-18 11:47:18.091 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_SUCCESS - Successful authentication for user: test-user from IP: 192.168.1.1 - Context: {username=test-user, ipAddress=192.168.1.1}
+2025-08-18 11:47:19.225 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:47:19.249 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:47:38.200 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:47:38.295 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:47:39.692 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:47:39.713 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:39.720 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:47:40.042 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:47:40.043 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:40.044 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:47:40.346 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/nonExistentHash
+2025-08-18 11:47:40.347 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:40.347 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/nonExistentHash
+2025-08-18 11:47:40.379 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/testHash
+2025-08-18 11:47:40.380 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:47:40.381 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/testHash
+2025-08-18 11:47:40.455 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: TEST_SECURITY - Test security event
+2025-08-18 11:47:40.457 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_FAILED - Failed authentication for user: test-user from IP: 192.168.1.1 - Context: {ipAddress=192.168.1.1, username=test-user, reason=Invalid password}
+2025-08-18 11:47:40.458 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_SUCCESS - Successful authentication for user: test-user from IP: 192.168.1.1 - Context: {username=test-user, ipAddress=192.168.1.1}
+2025-08-18 11:47:41.879 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:47:41.907 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:48:31.904 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:48:32.040 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:48:33.462 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:48:33.493 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:48:33.507 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:48:33.874 [main] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 11:48:33.875 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:48:33.875 [main] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 11:48:34.138 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/nonExistentHash
+2025-08-18 11:48:34.140 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:48:34.141 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/nonExistentHash
+2025-08-18 11:48:34.172 [main] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/testHash
+2025-08-18 11:48:34.172 [main] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:48:34.173 [main] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/testHash
+2025-08-18 11:48:34.233 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: TEST_SECURITY - Test security event
+2025-08-18 11:48:34.234 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_FAILED - Failed authentication for user: test-user from IP: 192.168.1.1 - Context: {ipAddress=192.168.1.1, username=test-user, reason=Invalid password}
+2025-08-18 11:48:34.234 [main] INFO  com.outseer.webfingerprint.security - SECURITY_EVENT: AUTH_SUCCESS - Successful authentication for user: test-user from IP: 192.168.1.1 - Context: {username=test-user, ipAddress=192.168.1.1}
+2025-08-18 11:48:35.587 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:48:35.609 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:48:59.823 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:48:59.969 [main] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:49:18.644 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 11:49:18.794 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 11:49:32.349 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 11:49:32.351 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 11:49:32.424 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:49:32.434 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 11:49:32.437 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 11:49:32.438 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 11:49:32.439 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 12:18:10.705 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 12:18:10.706 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 12:18:10.707 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:10.710 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 12:18:10.714 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 12:18:10.717 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:10.718 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 12:18:17.487 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 12:18:17.488 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/5b2c7073
+2025-08-18 12:18:17.489 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:17.490 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 12:18:17.494 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/5b2c7073
+2025-08-18 12:18:17.495 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:17.496 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/5b2c7073
+2025-08-18 12:18:30.007 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 12:18:30.007 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 12:18:30.009 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:30.010 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 12:18:30.013 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 12:18:30.015 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 12:18:30.016 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:52:38.294 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 18:52:38.429 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 18:53:35.251 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 18:53:35.255 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 18:53:35.335 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:53:35.341 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 18:53:35.345 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:53:35.350 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:53:35.350 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 18:57:18.550 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 18:57:18.652 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 18:57:24.579 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 18:57:24.579 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 18:57:24.615 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:57:24.622 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 18:57:24.624 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:57:24.626 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:57:24.626 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 18:57:27.944 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 18:57:27.944 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 18:57:27.946 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:57:27.946 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:57:27.946 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:57:27.947 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 18:58:03.362 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 18:58:03.508 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 18:58:06.983 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 18:58:06.983 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 18:58:07.024 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:58:07.029 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 18:58:07.030 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:58:07.033 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:58:07.033 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 18:58:08.427 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 18:58:08.427 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 18:58:08.429 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:58:08.429 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 18:58:08.429 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 18:58:08.430 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:00:20.887 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:00:20.984 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:00:26.042 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:00:26.042 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:00:26.081 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:00:26.087 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:00:26.089 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:00:26.089 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:00:26.090 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:01:23.589 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:01:23.741 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:01:29.783 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:01:29.783 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:01:29.829 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:01:29.836 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:01:29.838 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:01:29.840 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:01:29.840 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:02:04.854 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:02:04.971 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:02:14.849 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:02:14.849 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:02:14.882 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:02:14.887 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:02:14.889 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:02:14.890 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:02:14.890 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:02:37.815 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:02:37.969 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:02:42.089 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:02:42.089 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:02:42.129 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:02:42.135 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:02:42.137 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:02:42.138 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:02:42.139 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:02:42.349 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device
+2025-08-18 19:02:42.355 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 19:02:42.357 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:02:42.357 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 19:03:03.807 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:03:03.952 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:03:22.902 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-08-18 19:03:23.145 [restartedMain] DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-08-18 19:03:46.043 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:03:46.043 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:03:46.121 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:03:46.125 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:03:46.128 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:03:46.134 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:03:46.134 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:03:46.418 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device
+2025-08-18 19:03:46.426 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/device
+2025-08-18 19:03:46.429 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:03:46.430 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/device
+2025-08-18 19:03:48.951 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:03:48.952 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:03:48.953 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:03:48.953 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:03:48.954 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
+2025-08-18 19:03:48.954 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:05:24.677 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /actuator/info
+2025-08-18 19:05:24.678 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/device/7ceef397
+2025-08-18 19:05:24.679 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:05:24.681 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /actuator/info
+2025-08-18 19:05:24.684 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/device/7ceef397
+2025-08-18 19:05:24.686 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-08-18 19:05:24.687 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/device/7ceef397
