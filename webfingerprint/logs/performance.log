@@ -1,0 +1,87 @@
+2025-08-18 11:38:08.529 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 70ms - Entity: Device
+2025-08-18 11:38:08.529 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 210ms - Device: testHash, VisitCount: 1
+2025-08-18 11:38:08.670 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 0ms - Entity: Device
+2025-08-18 11:38:08.708 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 8ms - Entity: Device
+2025-08-18 11:38:08.726 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 18ms - Entity: Device
+2025-08-18 11:38:08.758 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 58ms - Device: testHash, VisitCount: 2
+2025-08-18 11:38:30.076 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 78ms - Entity: Device
+2025-08-18 11:38:30.076 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 188ms - Device: testHash, VisitCount: 1
+2025-08-18 11:38:30.187 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 2ms - Entity: Device
+2025-08-18 11:38:30.218 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 7ms - Entity: Device
+2025-08-18 11:38:30.235 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 17ms - Entity: Device
+2025-08-18 11:38:30.236 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 26ms - Device: testHash, VisitCount: 2
+2025-08-18 11:47:17.597 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 65ms - Entity: Device
+2025-08-18 11:47:17.597 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 166ms - Device: testHash, VisitCount: 1
+2025-08-18 11:47:17.686 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 2ms - Entity: Device
+2025-08-18 11:47:17.711 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 5ms - Entity: Device
+2025-08-18 11:47:17.724 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 13ms - Entity: Device
+2025-08-18 11:47:17.726 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 20ms - Device: testHash, VisitCount: 2
+2025-08-18 11:47:18.087 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: TEST_OPERATION took 150ms - Test performance
+2025-08-18 11:47:18.087 [main] WARN  c.outseer.webfingerprint.performance - SLOW_OPERATION: SLOW_OPERATION took 2000ms (threshold: 1000ms)
+2025-08-18 11:47:18.087 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SELECT took 50ms - Entity: User
+2025-08-18 11:47:40.264 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 71ms - Entity: Device
+2025-08-18 11:47:40.264 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 204ms - Device: testHash, VisitCount: 1
+2025-08-18 11:47:40.360 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 1ms - Entity: Device
+2025-08-18 11:47:40.388 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 6ms - Entity: Device
+2025-08-18 11:47:40.414 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 26ms - Entity: Device
+2025-08-18 11:47:40.414 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 32ms - Device: testHash, VisitCount: 2
+2025-08-18 11:47:40.448 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: TEST_OPERATION took 150ms - Test performance
+2025-08-18 11:47:40.448 [main] WARN  c.outseer.webfingerprint.performance - SLOW_OPERATION: SLOW_OPERATION took 2000ms (threshold: 1000ms)
+2025-08-18 11:47:40.449 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SELECT took 50ms - Entity: User
+2025-08-18 11:48:34.064 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 65ms - Entity: Device
+2025-08-18 11:48:34.065 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 173ms - Device: testHash, VisitCount: 1
+2025-08-18 11:48:34.152 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 2ms - Entity: Device
+2025-08-18 11:48:34.181 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 4ms - Entity: Device
+2025-08-18 11:48:34.200 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 19ms - Entity: Device
+2025-08-18 11:48:34.202 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 27ms - Device: testHash, VisitCount: 2
+2025-08-18 11:48:34.229 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: TEST_OPERATION took 150ms - Test performance
+2025-08-18 11:48:34.229 [main] WARN  c.outseer.webfingerprint.performance - SLOW_OPERATION: SLOW_OPERATION took 2000ms (threshold: 1000ms)
+2025-08-18 11:48:34.229 [main] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SELECT took 50ms - Entity: User
+2025-08-18 11:49:32.660 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 130ms - Entity: Device
+2025-08-18 11:49:32.729 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 69ms - Entity: Device
+2025-08-18 11:49:32.732 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 204ms - Device: 7ceef397, VisitCount: 24
+2025-08-18 12:18:10.728 [http-nio-8080-exec-8] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 4ms - Entity: Device
+2025-08-18 12:18:10.731 [http-nio-8080-exec-8] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 3ms - Entity: Device
+2025-08-18 12:18:10.731 [http-nio-8080-exec-8] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 8ms - Device: 7ceef397, VisitCount: 25
+2025-08-18 12:18:17.503 [http-nio-8080-exec-2] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 3ms - Entity: Device
+2025-08-18 12:18:17.506 [http-nio-8080-exec-2] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 3ms - Entity: Device
+2025-08-18 12:18:17.507 [http-nio-8080-exec-2] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 8ms - Device: 5b2c7073, VisitCount: 9
+2025-08-18 12:18:30.024 [http-nio-8080-exec-5] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 5ms - Entity: Device
+2025-08-18 12:18:30.027 [http-nio-8080-exec-5] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 3ms - Entity: Device
+2025-08-18 12:18:30.028 [http-nio-8080-exec-5] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 9ms - Device: 7ceef397, VisitCount: 26
+2025-08-18 18:53:35.615 [http-nio-8080-exec-7] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 152ms - Entity: Device
+2025-08-18 18:53:35.678 [http-nio-8080-exec-7] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 63ms - Entity: Device
+2025-08-18 18:53:35.693 [http-nio-8080-exec-7] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 233ms - Device: 7ceef397, VisitCount: 27
+2025-08-18 18:57:24.750 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 66ms - Entity: Device
+2025-08-18 18:57:24.785 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 35ms - Entity: Device
+2025-08-18 18:57:24.787 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 107ms - Device: 7ceef397, VisitCount: 28
+2025-08-18 18:57:27.950 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 2ms - Entity: Device
+2025-08-18 18:57:27.951 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 1ms - Entity: Device
+2025-08-18 18:57:27.952 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 4ms - Device: 7ceef397, VisitCount: 29
+2025-08-18 18:58:07.154 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 69ms - Entity: Device
+2025-08-18 18:58:07.187 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 32ms - Entity: Device
+2025-08-18 18:58:07.188 [http-nio-8080-exec-4] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 103ms - Device: 7ceef397, VisitCount: 30
+2025-08-18 18:58:08.434 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 2ms - Entity: Device
+2025-08-18 18:58:08.436 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 2ms - Entity: Device
+2025-08-18 18:58:08.436 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 5ms - Device: 7ceef397, VisitCount: 31
+2025-08-18 19:00:26.212 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 66ms - Entity: Device
+2025-08-18 19:00:26.246 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 34ms - Entity: Device
+2025-08-18 19:00:26.247 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 102ms - Device: 7ceef397, VisitCount: 32
+2025-08-18 19:01:29.968 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 67ms - Entity: Device
+2025-08-18 19:01:29.999 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 31ms - Entity: Device
+2025-08-18 19:01:30.000 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 101ms - Device: 7ceef397, VisitCount: 33
+2025-08-18 19:02:15.013 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 73ms - Entity: Device
+2025-08-18 19:02:15.049 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 36ms - Entity: Device
+2025-08-18 19:02:15.050 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 111ms - Device: 7ceef397, VisitCount: 34
+2025-08-18 19:02:42.318 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 109ms - Entity: Device
+2025-08-18 19:02:42.497 [http-nio-8080-exec-7] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 44ms - Entity: Device
+2025-08-18 19:02:42.497 [http-nio-8080-exec-7] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 47ms - Device: 7ceef397, VisitCount: 1
+2025-08-18 19:03:46.371 [http-nio-8080-exec-3] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 136ms - Entity: Device
+2025-08-18 19:03:46.685 [http-nio-8080-exec-5] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_SAVE took 83ms - Entity: Device
+2025-08-18 19:03:46.685 [http-nio-8080-exec-5] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: CREATE_OR_UPDATE_DEVICE took 85ms - Device: 7ceef397, VisitCount: 1
+2025-08-18 19:03:48.963 [http-nio-8080-exec-6] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 7ms - Entity: Device
+2025-08-18 19:03:48.984 [http-nio-8080-exec-6] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 20ms - Entity: Device
+2025-08-18 19:03:48.985 [http-nio-8080-exec-6] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 29ms - Device: 7ceef397, VisitCount: 2
+2025-08-18 19:05:24.693 [http-nio-8080-exec-1] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_FIND took 3ms - Entity: Device
+2025-08-18 19:05:24.696 [http-nio-8080-exec-1] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: DB_UPDATE took 3ms - Entity: Device
+2025-08-18 19:05:24.697 [http-nio-8080-exec-1] INFO  c.outseer.webfingerprint.performance - PERFORMANCE: GET_DEVICE_STATS took 7ms - Device: 7ceef397, VisitCount: 3

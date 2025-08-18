@@ -2,6 +2,7 @@ package com.outseer.webfingerprint.globalException;
 
 import com.outseer.webfingerprint.dto.DeviceTrackingResponse;
 import com.outseer.webfingerprint.exception.DeviceNotFoundException;
+import com.outseer.webfingerprint.service.LoggingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,10 +16,15 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private final LoggingService loggingService;
+
+    public GlobalExceptionHandler(LoggingService loggingService) {
+        this.loggingService = loggingService;
+    }
 
     @ExceptionHandler(DeviceNotFoundException.class)
     public ResponseEntity<DeviceTrackingResponse> handleDeviceNotFoundException(DeviceNotFoundException ex) {
-        logger.warn("Device not found: {}", ex.getMessage());
+        loggingService.warn("Device not found: {}", ex.getMessage());
         DeviceTrackingResponse response = new DeviceTrackingResponse();
         response.setStatus("not_found");
         response.setMessage(ex.getMessage());
@@ -27,7 +33,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<DeviceTrackingResponse> handleGeneralException(Exception ex) {
-        logger.error("An unexpected error occurred: {}", ex.getMessage(), ex);
+        loggingService.error("An unexpected error occurred: {}", ex.getMessage(), ex);
         DeviceTrackingResponse errorResponse = new DeviceTrackingResponse(
                 "error_" + System.currentTimeMillis(),
                 0L,
