@@ -2,22 +2,17 @@ package com.outseer.webfingerprint.controller;
 
 import com.outseer.webfingerprint.dto.DeviceFingerprintRequest;
 import com.outseer.webfingerprint.dto.DeviceTrackingResponse;
-import com.outseer.webfingerprint.exception.DeviceNotFoundException;
 import com.outseer.webfingerprint.service.DeviceTrackingService;
-import com.outseer.webfingerprint.service.LoggingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import jakarta.validation.Valid;
-
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("api/device")
@@ -26,11 +21,9 @@ public class DeviceTrackingController {
 
     private static final Logger logger = LoggerFactory.getLogger(DeviceTrackingController.class);
     private final DeviceTrackingService deviceTrackingService;
-    private final LoggingService loggingService;
 
-    public DeviceTrackingController(DeviceTrackingService service, LoggingService loggingService) {
+    public DeviceTrackingController(DeviceTrackingService service) {
         this.deviceTrackingService = service;
-        this.loggingService = loggingService;
     }
 
     /**
