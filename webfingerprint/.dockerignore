@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.idea
+*.iml
+*.ipr
+*.iws
+.vscode
+
+# Build artifacts
+target/
+!target/*.jar
+build/
+
+# Logs
+logs/
+*.log
+
+# Data
+data/
+*.db
+
+# Maven wrapper (not needed in container)
+.mvn/
+
+# Documentation
+*.md
+HELP.md
+LOGGING.md
+
+# Test files
+src/test/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Kubernetes files (not needed in image)
+k8s/
+
+# Docker files (not needed in image)
+Dockerfile
+.dockerignore
+docker-compose*.yml
