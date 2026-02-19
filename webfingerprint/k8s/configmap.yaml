@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webfingerprint-config
+  labels:
+    app: webfingerprint
+data:
+  # Application configuration
+  SPRING_DATASOURCE_URL: "jdbc:h2:file:/app/data/devicetracker"
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: "org.h2.Driver"
+  SPRING_DATASOURCE_USERNAME: "sa"
+  SPRING_DATASOURCE_PASSWORD: ""
+  
+  # H2 Console settings
+  SPRING_H2_CONSOLE_ENABLED: "true"
+  SPRING_H2_CONSOLE_PATH: "/h2-console"
+  
+  # JPA settings
+  SPRING_JPA_SHOW_SQL: "false"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+  
+  # Server settings
+  SERVER_PORT: "8080"
+  
+  # Cache settings
+  SPRING_CACHE_TYPE: "caffeine"
+  SPRING_CACHE_CACHE_NAMES: "devices"
+  SPRING_CACHE_CAFFEINE_SPEC: "maximumSize=500,expireAfterAccess=600s"
+  
+  # Swagger UI Properties
+  SPRINGDOC_API_DOCS_PATH: "/api-docs"
+  SPRINGDOC_SWAGGER_UI_PATH: "/swagger-ui.html"
+  SPRINGDOC_SWAGGER_UI_OPERATIONS_SORTER: "method"
+  SPRINGDOC_SWAGGER_UI_TAGS_SORTER: "alpha"
+  
+  # Actuator settings
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+  MANAGEMENT_ENDPOINTS_WEB_BASE_PATH: "/actuator"
+  MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS: "always"
+  
+  # Logging configuration
+  LOGGING_LEVEL_ROOT: "INFO"
+  LOGGING_LEVEL_COM_OUTSEER_WEBFINGERPRINT: "INFO"
+  
+  # Log file paths
+  LOGGING_FILE_PATH: "/app/logs"
+  LOGGING_FILE_NAME: "/app/logs/webfingerprint.log"
+  
+  # Prometheus metrics
+  MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: "true"
+  MANAGEMENT_ENDPOINT_METRICS_ENABLED: "true"
