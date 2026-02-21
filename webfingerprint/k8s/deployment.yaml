@@ -25,7 +25,7 @@ spec:
         prometheus.io/path: "/actuator/prometheus"
         prometheus.io/port: "8080"
     spec:
-      # Security context for the pod
+      automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
@@ -38,7 +38,6 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
-          # Environment variables
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "kubernetes"
@@ -46,11 +45,9 @@ spec:
               value: "-Xms256m -Xmx512m -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
             - name: SERVER_PORT
               value: "8080"
-          # Environment from ConfigMap
           envFrom:
             - configMapRef:
                 name: webfingerprint-config
-          # Resource limits and requests
           resources:
             requests:
               memory: "256Mi"
@@ -58,7 +55,6 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
-          # Liveness probe - checks if the application is running
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -67,7 +63,6 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
-          # Readiness probe - checks if the application is ready to receive traffic
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
@@ -76,7 +71,6 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
-          # Startup probe - for slow starting applications
           startupProbe:
             httpGet:
               path: /actuator/health
@@ -85,19 +79,16 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 30
-          # Volume mounts
           volumeMounts:
             - name: logs
               mountPath: /app/logs
             - name: data
               mountPath: /app/data
-      # Volumes
       volumes:
         - name: logs
           emptyDir: {}
         - name: data
           emptyDir: {}
-      # Anti-affinity to spread pods across nodes
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

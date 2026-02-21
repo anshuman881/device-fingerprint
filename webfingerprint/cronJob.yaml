@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cleanup-cron
+  labels:
+    app: webfingerprint
+    component: cleanup
+    version: v1
+spec:
+  schedule: "*/2 * * * *"
+  timeZone: "UTC"
+  concurrencyPolicy: Forbid
+  startingDeadlineSeconds: 3600
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  suspend: false
+  
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 3600
+      backoffLimit: 3
+      ttlSecondsAfterFinished: 86400
+      
+      template:
+        metadata:
+          labels:
+            app: webfingerprint
+            component: cleanup
+        spec:
+          containers:
+            - name: webfingerprint-cleanup
+              image: anshuman881/webfingerprint
+              imagePullPolicy: Always
+              args:
+                - "--runCleanup=true"
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "100m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+              env:
+                - name: JAVA_OPTS
+                  value: "-Xmx256m -Xms128m"
+              securityContext:
+                runAsNonRoot: true
+                runAsUser: 1000
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: false
+          restartPolicy: OnFailure
