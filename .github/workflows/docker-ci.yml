@@ -52,8 +52,6 @@ jobs:
         with:
           images: docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
-            type=sha,prefix=
             type=raw,value=latest
 
       - name: Build and push Docker image

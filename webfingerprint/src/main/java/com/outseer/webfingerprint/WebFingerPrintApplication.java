@@ -31,7 +31,7 @@ public class WebFingerPrintApplication implements CommandLineRunner {
     }
 
     private void cleanupJob() {
-        System.out.println("cleanupJob Started");
+        System.out.println("cleanupJob Started....");
         long endTime = System.currentTimeMillis() + (60 * 1000);
         while (System.currentTimeMillis() < endTime) {
             System.out.println("Running cleanup logic...");
@@ -42,7 +42,7 @@ public class WebFingerPrintApplication implements CommandLineRunner {
                 break;
             }
         }
-        System.out.println("cleanupJob Ended");
+        System.out.println("cleanupJob Ended....");
         System.exit(0);
     }
 
