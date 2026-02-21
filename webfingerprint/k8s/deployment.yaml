@@ -86,9 +86,11 @@ spec:
               mountPath: /app/data
       volumes:
         - name: logs
-          emptyDir: {}
+          emptyDir: 
+            sizeLimit: 100Mi
         - name: data
-          emptyDir: {}
+          emptyDir: 
+            sizeLimit: 500Mi
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:

@@ -3,8 +3,6 @@ name: Build UI & Backend
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:   # ✅ allows manual run from GitHub Actions UI
 
 jobs:

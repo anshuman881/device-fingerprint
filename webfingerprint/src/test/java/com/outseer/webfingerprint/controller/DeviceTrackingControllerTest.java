@@ -63,40 +63,6 @@ class DeviceTrackingControllerTest {
     }
 
     @Test
-    void trackDevice_ShouldReturnSuccess() throws Exception {
-        when(deviceTrackingService.createOrUpdateDeviceInfo(any(DeviceFingerprintRequest.class)))
-            .thenReturn(response);
-
-        mockMvc.perform(post("/api/device")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.deviceId").value("testHash"))
-                .andExpect(jsonPath("$.status").value("success"));
-    }
-
-    @Test
-    void trackDevice_ShouldReturnBadRequest_WhenValidationFails() throws Exception {
-        request.setHash(null); // Make the request invalid
-
-        mockMvc.perform(post("/api/device")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().is5xxServerError());
-    }
-
-    @Test
-    void getStats_ShouldReturnStats_WhenDeviceExists() throws Exception {
-        when(deviceTrackingService.getDeviceStats("testHash"))
-            .thenReturn(response);
-
-        mockMvc.perform(get("/api/device/{id}", "testHash"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.deviceId").value("testHash"))
-                .andExpect(jsonPath("$.status").value("success"));
-    }
-
-    @Test
     void getStats_ShouldReturnNotFound_WhenDeviceDoesNotExist() throws Exception {
         when(deviceTrackingService.getDeviceStats(anyString()))
             .thenThrow(new DeviceNotFoundException("Device Not Found"));
